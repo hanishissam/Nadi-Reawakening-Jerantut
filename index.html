@@ -9,13 +9,10 @@
 :root {
   --red: #B01C2E;
   --red-dark: #7A1220;
-  --red-deep: #4A0A14;
-  --red-light: #D4394F;
   --cream: #F5EFE0;
   --cream-dark: #E8DCC8;
   --cream-light: #FAF7F0;
   --gold: #C8A96E;
-  --gold-light: #E2C99A;
   --charcoal: #1A1410;
   --text: #2C2218;
   --text-muted: #6B5A4E;
@@ -45,7 +42,7 @@ body {
   text-transform: uppercase;
   position: relative; z-index: 1000;
 }
-.iium-banner strong { font-weight: 800; color: var(--gold-light); }
+.iium-banner strong { font-weight: 800; color: #E2C99A; }
 
 /* ─── NAV (TABBED) ─── */
 nav {
@@ -61,12 +58,11 @@ nav {
   font-family: 'Cormorant Garamond', serif;
   font-size: 28px; font-weight: 700;
   color: var(--cream); letter-spacing: 4px;
-  text-decoration: none; cursor: pointer;
+  cursor: pointer;
 }
 .nav-logo span { color: var(--gold); }
 
 .nav-links { display: flex; gap: 36px; list-style: none; }
-.nav-links li { cursor: pointer; }
 .nav-links button {
   background: none; border: none;
   font-family: 'Montserrat', sans-serif;
@@ -86,12 +82,8 @@ nav {
 .nav-links button.active::after { transform: scaleX(1); }
 
 /* ─── TAB CONTENT CONTAINERS ─── */
-.tab-content {
-  display: none;
-  animation: fadeIn 0.6s ease forwards;
-}
+.tab-content { display: none; animation: fadeIn 0.6s ease forwards; }
 .tab-content.active { display: block; }
-
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(15px); }
   to { opacity: 1; transform: translateY(0); }
@@ -100,7 +92,6 @@ nav {
 /* ─── GENERIC SECTION STYLES ─── */
 section { padding: 80px 0; }
 .container { max-width: 1400px; margin: 0 auto; padding: 0 60px; }
-
 .section-eyebrow {
   font-size: 11px; font-weight: 700; letter-spacing: 4px;
   text-transform: uppercase; color: var(--red);
@@ -118,7 +109,7 @@ section { padding: 80px 0; }
 /* ─── TAB 1: VISION & CONTEXT ─── */
 .hero-wrapper {
   position: relative; min-height: 80vh;
-  background: var(--charcoal) url('concept.jpg') center/cover no-repeat;
+  background: var(--charcoal) url('concept_2.jpg') center/cover no-repeat;
   display: flex; align-items: center;
 }
 .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(26,20,16,0.95) 0%, rgba(26,20,16,0.6) 50%, transparent 100%); }
@@ -138,12 +129,12 @@ section { padding: 80px 0; }
 .data-box h2 { font-family: 'Cormorant Garamond', serif; font-size: 40px; color: var(--gold); margin-bottom: 30px; }
 .data-stat { border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 20px; }
 .data-stat:last-child { border: none; padding: 0; margin: 0; }
-.data-num { font-size: 36px; font-weight: 700; font-family: 'Cormorant Garamond', serif; color: var(--red-light); }
+.data-num { font-size: 36px; font-weight: 700; font-family: 'Cormorant Garamond', serif; color: #D4394F; }
 .data-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.6); }
 
 /* ─── TAB 2: MASTERPLAN ─── */
 .masterplan-visual { background: var(--charcoal); padding: 60px 0; text-align: center; }
-.masterplan-visual img { max-width: 100%; height: auto; border: 1px solid rgba(200, 169, 110, 0.3); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+.masterplan-visual img { max-width: 100%; height: auto;  }
 
 .zone-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
 .zone-card { background: white; border-top: 4px solid var(--red); padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
@@ -153,7 +144,7 @@ section { padding: 80px 0; }
 .zone-card ul li strong { color: var(--charcoal); }
 
 .assets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 60px; }
-.asset-img { width: 100%; height: auto; border: 1px solid var(--cream-dark); }
+.asset-img { width: 100%; height: auto; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
 
 /* ─── TAB 3: PHASING ─── */
 .timeline-container { display: flex; flex-direction: column; gap: 40px; }
@@ -183,7 +174,9 @@ footer p { font-size: 12px; color: rgba(245,239,224,0.5); letter-spacing: 1px; }
 
 @media (max-width: 900px) {
   .mission-grid, .data-grid, .zone-grid, .assets-grid, .phase-content { grid-template-columns: 1fr; }
-  .nav-links { display: none; } /* Add a hamburger menu for mobile in production */
+  nav { padding: 0 20px; }
+  .nav-links { gap: 15px; }
+  .nav-links button { font-size: 10px; }
 }
 </style>
 </head>
@@ -196,13 +189,13 @@ footer p { font-size: 12px; color: rgba(245,239,224,0.5); letter-spacing: 1px; }
 
 <!-- NAVIGATION -->
 <nav>
-  <a class="nav-logo" onclick="switchTab('tab-vision')">N<span>A</span>DI</a>
-  <ul class="nav-links">
-    <li><button class="tab-link active" onclick="switchTab('tab-vision')">Vision & Context</button></li>
-    <li><button class="tab-link" onclick="switchTab('tab-masterplan')">The Masterplan</button></li>
-    <li><button class="tab-link" onclick="switchTab('tab-phasing')">Implementation</button></li>
-    <li><button class="tab-link" onclick="switchTab('tab-analysis')">Analysis</button></li>
-  </ul>
+  <div class="nav-logo" onclick="switchTab('tab-vision')">N<span>A</span>DI</div>
+  <div class="nav-links">
+    <button class="tab-link active" onclick="switchTab('tab-vision')">Vision & Context</button>
+    <button class="tab-link" onclick="switchTab('tab-masterplan')">The Masterplan</button>
+    <button class="tab-link" onclick="switchTab('tab-phasing')">Implementation</button>
+    <button class="tab-link" onclick="switchTab('tab-analysis')">Analysis</button>
+  </div>
 </nav>
 
 <main>
@@ -264,7 +257,7 @@ footer p { font-size: 12px; color: rgba(245,239,224,0.5); letter-spacing: 1px; }
       <div class="container">
         <div class="section-eyebrow" style="justify-content:center;">Layout NADI</div>
         <h2 class="section-title" style="color:var(--cream);">The <em>Masterplan</em></h2>
-        <img src="Masterplan Diagram transparent.jpg" alt="NADI Masterplan Transparent">
+        <img src="Masterplan Diagram transparent_2.jpg" alt="NADI Masterplan Transparent">
       </div>
     </div>
 
@@ -294,7 +287,7 @@ footer p { font-size: 12px; color: rgba(245,239,224,0.5); letter-spacing: 1px; }
           <h3>Inovasi Park (Industrial)</h3>
           <p class="section-desc">A future-oriented hub for agro-bio medical, pharmaceutical, and nutraceutical industries to retain youth talent.</p>
           <ul>
-            <li><strong>Terrace Factory/Warehouse:</strong> Flexible startup space</li>
+            <li><strong>Terrace Factory:</strong> Flexible startup space</li>
             <li><strong>Semi-Detached Factory:</strong> Nutraceutical focus</li>
             <li><strong>Detached Factory:</strong> Medical Equipment</li>
             <li><strong>Free Standing Buildings:</strong> Large scale bio-pharma</li>
@@ -303,8 +296,8 @@ footer p { font-size: 12px; color: rgba(245,239,224,0.5); letter-spacing: 1px; }
       </div>
 
       <div class="assets-grid">
-        <img src="land allocation and schematic.jpg" alt="Land Allocation and Schematic" class="asset-img">
-        <img src="housing sizes.jpg" alt="Housing Layouts and Sizes" class="asset-img">
+        <img src="land allocation and schematic.png" alt="Land Allocation and Schematic" class="asset-img">
+        <img src="housing sizes_2.jpg" alt="Housing Layouts and Sizes" class="asset-img">
       </div>
     </div>
   </div>
@@ -330,7 +323,7 @@ footer p { font-size: 12px; color: rgba(245,239,224,0.5); letter-spacing: 1px; }
               <h2>Degupan NADI</h2>
               <p><strong>Youth & Transit Zone.</strong> Prioritizes Transit-Oriented Development (TOD) at the KTM station to catalyze early regulatory momentum and establish a trained workforce pipeline through the local university. This phase stabilizes the foundational economy of the township.</p>
             </div>
-            <img src="Phasing Diagram 1 (1-5 years).jpg" alt="Phase 1 Diagram" class="phase-img">
+            <img src="Phasing Diagram 1 (1-5 years)_2.jpg" alt="Phase 1 Diagram" class="phase-img">
           </div>
 
           <!-- Phase 2 -->
@@ -339,7 +332,7 @@ footer p { font-size: 12px; color: rgba(245,239,224,0.5); letter-spacing: 1px; }
               <h2>Bayu NADI</h2>
               <p><strong>Tourism & Commerce Zone.</strong> Activates tourism anchors including the MICE Center, hotels, and the Inovasi industrial parks to drive visitor engagement and regional economic activity. This expands Jerantut's footprint as an eco-medical destination.</p>
             </div>
-            <img src="Phasing Diagram 2 (6-10 years).jpg" alt="Phase 2 Diagram" class="phase-img">
+            <img src="Phasing Diagram 2 (6-10 years)_2.jpg" alt="Phase 2 Diagram" class="phase-img">
           </div>
 
           <!-- Phase 3 -->
@@ -348,7 +341,7 @@ footer p { font-size: 12px; color: rgba(245,239,224,0.5); letter-spacing: 1px; }
               <h2>Hayat NADI</h2>
               <p><strong>Care & Wellness Zone.</strong> Completes the township with the geriatric care hospital and specialized health facilities. By this stage, the township has a mature, local workforce capable of supporting a premier, self-sufficient retirement destination.</p>
             </div>
-            <img src="Phasing Diagram 3 (11-20 years).jpg" alt="Phase 3 Diagram" class="phase-img">
+            <img src="Phasing Diagram 3 (11-20 years)_2.jpg" alt="Phase 3 Diagram" class="phase-img">
           </div>
 
         </div>
@@ -365,12 +358,12 @@ footer p { font-size: 12px; color: rgba(245,239,224,0.5); letter-spacing: 1px; }
           <div class="section-eyebrow">Macro & Micro Context</div>
           <h2 class="section-title">Site & <em>PESTLE Analysis</em></h2>
           <p class="section-desc" style="margin-bottom: 40px;">Evaluating the environmental sensitivities, hydrology, and the broader Political, Economic, Social, Technological, Legal, and Environmental impacts of the NADI framework.</p>
-          <img src="Site analysis map.jpg" alt="Site Analysis GIS Map" class="asset-img" style="margin-bottom: 60px;">
+          <img src="Site analysis map_2.jpg" alt="Site Analysis GIS Map" class="asset-img" style="margin-bottom: 60px;">
         </div>
 
         <div class="pestle-wrapper">
           <h2 class="section-title">Impact & <em>PESTLE</em></h2>
-          <img src="pestel.jpg" alt="PESTLE Analysis Matrix">
+          <img src="pestel.png" alt="PESTLE Analysis Matrix" class="asset-img">
         </div>
 
       </div>
