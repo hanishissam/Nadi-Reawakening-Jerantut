@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NADI — Reawakening the Pulse of Jerantut</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700;800&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #B01C2E;
+  --red-dark: #7A1220;
+  --red-deep: #4A0A14;
+  --red-light: #D4394F;
+  --cream: #F5EFE0;
+  --cream-dark: #E8DCC8;
+  --cream-light: #FAF7F0;
+  --gold: #C8A96E;
+  --gold-light: #E2C99A;
+  --charcoal: #1A1410;
+  --text: #2C2218;
+  --text-muted: #6B5A4E;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--cream-light);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--cream-dark); }
+::-webkit-scrollbar-thumb { background: var(--red); border-radius: 4px; }
+
+/* ─── IIUM BANNER ─── */
+.iium-banner {
+  background: var(--red);
+  color: var(--cream);
+  text-align: center;
+  padding: 10px;
+  font-size: 11px; letter-spacing: 2px;
+  text-transform: uppercase;
+  position: relative; z-index: 1000;
+}
+.iium-banner strong { font-weight: 800; color: var(--gold-light); }
+
+/* ─── NAV (TABBED) ─── */
+nav {
+  position: sticky; top: 0; z-index: 999;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 60px; height: 70px;
+  background: rgba(26, 20, 16, 0.98);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(200, 169, 110, 0.2);
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 700;
+  color: var(--cream); letter-spacing: 4px;
+  text-decoration: none; cursor: pointer;
+}
+.nav-logo span { color: var(--gold); }
+
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links li { cursor: pointer; }
+.nav-links button {
+  background: none; border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(245, 239, 224, 0.6);
+  padding: 10px 0; cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.nav-links button::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px; background: var(--gold);
+  transform: scaleX(0); transition: transform 0.3s ease;
+}
+.nav-links button:hover, .nav-links button.active { color: var(--gold); }
+.nav-links button.active::after { transform: scaleX(1); }
+
+/* ─── TAB CONTENT CONTAINERS ─── */
+.tab-content {
+  display: none;
+  animation: fadeIn 0.6s ease forwards;
+}
+.tab-content.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── GENERIC SECTION STYLES ─── */
+section { padding: 80px 0; }
+.container { max-width: 1400px; margin: 0 auto; padding: 0 60px; }
+
+.section-eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--red);
+  display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+}
+.section-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--red); }
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(40px, 5vw, 64px); font-weight: 400; line-height: 1.1;
+  color: var(--charcoal); margin-bottom: 24px;
+}
+.section-title em { font-style: italic; color: var(--red); }
+.section-desc { font-size: 15px; color: var(--text-muted); line-height: 1.8; max-width: 700px; }
+
+/* ─── TAB 1: VISION & CONTEXT ─── */
+.hero-wrapper {
+  position: relative; min-height: 80vh;
+  background: var(--charcoal) url('concept.jpg') center/cover no-repeat;
+  display: flex; align-items: center;
+}
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(26,20,16,0.95) 0%, rgba(26,20,16,0.6) 50%, transparent 100%); }
+.hero-inner { position: relative; z-index: 2; max-width: 800px; padding: 60px; }
+.hero-inner .section-eyebrow { color: var(--gold); }
+.hero-inner .section-eyebrow::before { background: var(--gold); }
+.hero-inner h1 { color: var(--cream); font-family: 'Cormorant Garamond', serif; font-size: 72px; line-height: 1; margin-bottom: 20px;}
+.hero-inner p { color: rgba(245,239,224,0.8); font-size: 18px; line-height: 1.8; margin-bottom: 40px;}
+
+.mission-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--cream-dark); margin-top: -60px; position: relative; z-index: 10; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+.mission-card { background: white; padding: 40px; }
+.mission-card h3 { font-size: 13px; color: var(--red); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+.mission-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+.data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 80px; align-items: center; }
+.data-box { background: var(--charcoal); color: var(--cream); padding: 50px; }
+.data-box h2 { font-family: 'Cormorant Garamond', serif; font-size: 40px; color: var(--gold); margin-bottom: 30px; }
+.data-stat { border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 20px; }
+.data-stat:last-child { border: none; padding: 0; margin: 0; }
+.data-num { font-size: 36px; font-weight: 700; font-family: 'Cormorant Garamond', serif; color: var(--red-light); }
+.data-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.6); }
+
+/* ─── TAB 2: MASTERPLAN ─── */
+.masterplan-visual { background: var(--charcoal); padding: 60px 0; text-align: center; }
+.masterplan-visual img { max-width: 100%; height: auto; border: 1px solid rgba(200, 169, 110, 0.3); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+
+.zone-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
+.zone-card { background: white; border-top: 4px solid var(--red); padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.zone-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 32px; color: var(--charcoal); margin-bottom: 16px; }
+.zone-card ul { list-style: none; margin-top: 20px; }
+.zone-card ul li { font-size: 14px; color: var(--text-muted); padding: 8px 0; border-bottom: 1px solid var(--cream-dark); }
+.zone-card ul li strong { color: var(--charcoal); }
+
+.assets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 60px; }
+.asset-img { width: 100%; height: auto; border: 1px solid var(--cream-dark); }
+
+/* ─── TAB 3: PHASING ─── */
+.timeline-container { display: flex; flex-direction: column; gap: 40px; }
+.timeline-nav { display: flex; gap: 0; border-bottom: 2px solid var(--cream-dark); }
+.timeline-nav button {
+  flex: 1; padding: 20px; background: none; border: none;
+  font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted);
+  cursor: pointer; transition: all 0.3s;
+  border-bottom: 4px solid transparent; margin-bottom: -2px;
+}
+.timeline-nav button.active { color: var(--red); border-bottom-color: var(--red); background: white; }
+
+.phase-content { display: none; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; animation: fadeIn 0.5s ease forwards; }
+.phase-content.active { display: grid; }
+.phase-text h2 { font-family: 'Cormorant Garamond', serif; font-size: 48px; color: var(--charcoal); margin-bottom: 20px; }
+.phase-text p { font-size: 16px; line-height: 1.8; color: var(--text-muted); }
+.phase-img { width: 100%; box-shadow: 0 15px 40px rgba(0,0,0,0.1); border-radius: 4px; }
+
+/* ─── TAB 4: ANALYSIS ─── */
+.analysis-grid { display: grid; grid-template-columns: 1fr; gap: 80px; }
+.pestle-wrapper img { width: 100%; height: auto; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+/* ─── FOOTER ─── */
+footer { background: var(--charcoal); padding: 40px 60px; text-align: center; border-top: 1px solid rgba(200,169,110,0.2); }
+footer p { font-size: 12px; color: rgba(245,239,224,0.5); letter-spacing: 1px; }
+
+@media (max-width: 900px) {
+  .mission-grid, .data-grid, .zone-grid, .assets-grid, .phase-content { grid-template-columns: 1fr; }
+  .nav-links { display: none; } /* Add a hamburger menu for mobile in production */
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BANNER -->
+<div class="iium-banner">
+  <strong>IIUM</strong> — International Islamic University Malaysia &nbsp;|&nbsp; Urban Planning Department &nbsp;|&nbsp; Planning Permission Application, Lot 4246, Mukim Pulau Tawar, Jerantut
+</div>
+
+<!-- NAVIGATION -->
+<nav>
+  <a class="nav-logo" onclick="switchTab('tab-vision')">N<span>A</span>DI</a>
+  <ul class="nav-links">
+    <li><button class="tab-link active" onclick="switchTab('tab-vision')">Vision & Context</button></li>
+    <li><button class="tab-link" onclick="switchTab('tab-masterplan')">The Masterplan</button></li>
+    <li><button class="tab-link" onclick="switchTab('tab-phasing')">Implementation</button></li>
+    <li><button class="tab-link" onclick="switchTab('tab-analysis')">Analysis</button></li>
+  </ul>
+</nav>
+
+<main>
+  <!-- ================= TAB 1: VISION & CONTEXT ================= -->
+  <div id="tab-vision" class="tab-content active">
+    <div class="hero-wrapper">
+      <div class="hero-overlay"></div>
+      <div class="hero-inner">
+        <div class="section-eyebrow">Jerantut, Pahang</div>
+        <h1>Reawakening the Pulse of Jerantut</h1>
+        <p>Malaysia's first rural-integrated healthcare tourism township — where specialist healthcare, ecological healing, and intergenerational vitality converge to reawaken Jerantut as the pulse of Pahang's human economy.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="mission-grid">
+        <div class="mission-card">
+          <h3>01. Resilient Retirement</h3>
+          <p>Building a resilient retirement ecosystem through barrier-free assisted living, geriatric healthcare, and biophilic social spaces.</p>
+        </div>
+        <div class="mission-card">
+          <h3>02. Premium Wellness</h3>
+          <p>Positioning Jerantut as a premium wellness destination by integrating advanced post-operative care with local eco-tourism assets.</p>
+        </div>
+        <div class="mission-card">
+          <h3>03. Youth Retention</h3>
+          <p>Reducing youth outmigration through the introduction of medical and biotech industries, high-value jobs, and flexible housing incentives.</p>
+        </div>
+      </div>
+
+      <div class="data-grid">
+        <div class="data-text">
+          <div class="section-eyebrow">The Justification</div>
+          <h2 class="section-title">Demographics &<br><em>Market Resilience</em></h2>
+          <p class="section-desc">Jerantut currently faces a significant housing deficit of 7,876 units amid strong owner-occupier demand. Concurrently, the district has entered an aging stage, with the 65+ demographic surpassing the 7% threshold, alongside a noticeable youth out-migration to urban centers. The NADI masterplan directly addresses this structural gap.</p>
+        </div>
+        <div class="data-box">
+          <h2>Jerantut Profile</h2>
+          <div class="data-stat">
+            <div class="data-num">104,771</div>
+            <div class="data-label">Total Population (Projected 124,632 by 2040)</div>
+          </div>
+          <div class="data-stat">
+            <div class="data-num">16.8%</div>
+            <div class="data-label">Aging Population (> 65 Years)</div>
+          </div>
+          <div class="data-stat">
+            <div class="data-num">7,876</div>
+            <div class="data-label">Current Housing Deficit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TAB 2: THE MASTERPLAN ================= -->
+  <div id="tab-masterplan" class="tab-content">
+    <div class="masterplan-visual">
+      <div class="container">
+        <div class="section-eyebrow" style="justify-content:center;">Layout NADI</div>
+        <h2 class="section-title" style="color:var(--cream);">The <em>Masterplan</em></h2>
+        <img src="Masterplan Diagram transparent.jpg" alt="NADI Masterplan Transparent">
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="zone-grid">
+        <div class="zone-card">
+          <h3>Universal Housing</h3>
+          <p class="section-desc">Weaving youth migration and elderly aging into a unified ecosystem with accessible ground-levels and flexible upper-level youth studios.</p>
+          <ul>
+            <li><strong>Taman Degupan & Serenia:</strong> Terrace Housing (20'x70')</li>
+            <li><strong>Forestia Residences:</strong> Semi-Detached & Cluster Housing</li>
+            <li><strong>Eco-Nadi Residences:</strong> Detached Housing</li>
+            <li><strong>Sanubari Serene:</strong> 131' x 114' plots</li>
+          </ul>
+        </div>
+        <div class="zone-card">
+          <h3>Niaga Sentra (Commercial)</h3>
+          <p class="section-desc">A walkable commercial boulevard integrating daily retail, F&B, medical-active showrooms, and local enterprises.</p>
+          <ul>
+            <li><strong>NADI Promenade:</strong> Boulevard Shoplots</li>
+            <li><strong>Medical Active Showrooms:</strong> Supporting wellness & mobility</li>
+            <li><strong>Terrace Shoplots:</strong> 6.1m x 20m configurations</li>
+            <li><strong>Semi-D Shoplots:</strong> 12.2m x 39.6m configurations</li>
+          </ul>
+        </div>
+        <div class="zone-card">
+          <h3>Inovasi Park (Industrial)</h3>
+          <p class="section-desc">A future-oriented hub for agro-bio medical, pharmaceutical, and nutraceutical industries to retain youth talent.</p>
+          <ul>
+            <li><strong>Terrace Factory/Warehouse:</strong> Flexible startup space</li>
+            <li><strong>Semi-Detached Factory:</strong> Nutraceutical focus</li>
+            <li><strong>Detached Factory:</strong> Medical Equipment</li>
+            <li><strong>Free Standing Buildings:</strong> Large scale bio-pharma</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="assets-grid">
+        <img src="land allocation and schematic.jpg" alt="Land Allocation and Schematic" class="asset-img">
+        <img src="housing sizes.jpg" alt="Housing Layouts and Sizes" class="asset-img">
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TAB 3: IMPLEMENTATION (PHASING) ================= -->
+  <div id="tab-phasing" class="tab-content">
+    <section>
+      <div class="container">
+        <div class="section-eyebrow">Strategic Rollout</div>
+        <h2 class="section-title">Implementation <em>Strategy</em></h2>
+        <p class="section-desc" style="margin-bottom: 40px;">The development adopts a thematic and zoning approach with "Transit-First" logic, catalyzing early economic momentum before expanding into specialized healthcare tourism.</p>
+
+        <div class="timeline-container">
+          <div class="timeline-nav">
+            <button class="phase-btn active" onclick="showPhase(1)">Phase 1 (1-5 Years)</button>
+            <button class="phase-btn" onclick="showPhase(2)">Phase 2 (6-10 Years)</button>
+            <button class="phase-btn" onclick="showPhase(3)">Phase 3 (11-20 Years)</button>
+          </div>
+
+          <!-- Phase 1 -->
+          <div id="phase-1" class="phase-content active">
+            <div class="phase-text">
+              <h2>Degupan NADI</h2>
+              <p><strong>Youth & Transit Zone.</strong> Prioritizes Transit-Oriented Development (TOD) at the KTM station to catalyze early regulatory momentum and establish a trained workforce pipeline through the local university. This phase stabilizes the foundational economy of the township.</p>
+            </div>
+            <img src="Phasing Diagram 1 (1-5 years).jpg" alt="Phase 1 Diagram" class="phase-img">
+          </div>
+
+          <!-- Phase 2 -->
+          <div id="phase-2" class="phase-content">
+            <div class="phase-text">
+              <h2>Bayu NADI</h2>
+              <p><strong>Tourism & Commerce Zone.</strong> Activates tourism anchors including the MICE Center, hotels, and the Inovasi industrial parks to drive visitor engagement and regional economic activity. This expands Jerantut's footprint as an eco-medical destination.</p>
+            </div>
+            <img src="Phasing Diagram 2 (6-10 years).jpg" alt="Phase 2 Diagram" class="phase-img">
+          </div>
+
+          <!-- Phase 3 -->
+          <div id="phase-3" class="phase-content">
+            <div class="phase-text">
+              <h2>Hayat NADI</h2>
+              <p><strong>Care & Wellness Zone.</strong> Completes the township with the geriatric care hospital and specialized health facilities. By this stage, the township has a mature, local workforce capable of supporting a premier, self-sufficient retirement destination.</p>
+            </div>
+            <img src="Phasing Diagram 3 (11-20 years).jpg" alt="Phase 3 Diagram" class="phase-img">
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= TAB 4: ANALYSIS ================= -->
+  <div id="tab-analysis" class="tab-content">
+    <section>
+      <div class="container analysis-grid">
+        
+        <div>
+          <div class="section-eyebrow">Macro & Micro Context</div>
+          <h2 class="section-title">Site & <em>PESTLE Analysis</em></h2>
+          <p class="section-desc" style="margin-bottom: 40px;">Evaluating the environmental sensitivities, hydrology, and the broader Political, Economic, Social, Technological, Legal, and Environmental impacts of the NADI framework.</p>
+          <img src="Site analysis map.jpg" alt="Site Analysis GIS Map" class="asset-img" style="margin-bottom: 60px;">
+        </div>
+
+        <div class="pestle-wrapper">
+          <h2 class="section-title">Impact & <em>PESTLE</em></h2>
+          <img src="pestel.jpg" alt="PESTLE Analysis Matrix">
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 NADI Jerantut Masterplan. Universiti Islam Antarabangsa Malaysia (IIUM) Urban Planning Department.</p>
+</footer>
+
+<script>
+  // Script for Main Tab Navigation
+  function switchTab(tabId) {
+    // Hide all tabs
+    document.querySelectorAll('.tab-content').forEach(tab => {
+      tab.classList.remove('active');
+    });
+    // Remove active class from nav buttons
+    document.querySelectorAll('.tab-link').forEach(btn => {
+      btn.classList.remove('active');
+    });
+
+    // Show selected tab
+    document.getElementById(tabId).classList.add('active');
+    
+    // Set active state on button (find the button matching the tabId)
+    const activeBtn = Array.from(document.querySelectorAll('.tab-link')).find(btn => btn.getAttribute('onclick').includes(tabId));
+    if(activeBtn) activeBtn.classList.add('active');
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Script for Phasing Timeline
+  function showPhase(phaseNum) {
+    // Hide all phase contents
+    document.querySelectorAll('.phase-content').forEach(content => {
+      content.classList.remove('active');
+    });
+    // Remove active class from timeline buttons
+    document.querySelectorAll('.phase-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+
+    // Show selected phase
+    document.getElementById('phase-' + phaseNum).classList.add('active');
+    
+    // Set active state on clicked timeline button
+    const buttons = document.querySelectorAll('.phase-btn');
+    buttons[phaseNum - 1].classList.add('active');
+  }
+</script>
+
+</body>
+</html>
