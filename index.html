@@ -13,16 +13,16 @@
 <style>
 :root {
   /* Premium Calming Palette */
-  --nadi-red: #8C1D25;       /* Deep Signature Crimson */
-  --nadi-gold: #C6A87C;      /* Champagne Gold */
-  --nadi-forest: #4A7055;    /* Premium Eucalyptus Sage */
-  --nadi-charcoal: #1C1A19;  /* Soft Warm Black */
+  --nadi-red: #8C1D25;       
+  --nadi-gold: #C6A87C;      
+  --nadi-forest: #4A7055;    
+  --nadi-charcoal: #1C1A19;  
   --nadi-charcoal-light: #2A2A2A;
   
   /* Welcoming Earthy Neutrals */
-  --nadi-cream: #F5F2EB;     /* Cashmere Cream (Main BG) */
-  --nadi-sand: #E6DFD3;      /* Darker Cream for contrast */
-  --nadi-stone: #DCD5C9;     /* Warm Greige for Finance Section */
+  --nadi-cream: #F5F2EB;     
+  --nadi-sand: #E6DFD3;      
+  --nadi-stone: #DCD5C9;     
   --nadi-pure: #FFFFFF;
   
   /* Text */
@@ -117,7 +117,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
 .img-card:hover { transform: scale(1.02); box-shadow: 0 30px 60px rgba(0,0,0,0.12); }
 
 /* ─── STATS BAR ─── */
-.stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(198, 168, 124, 0.3); border: 1px solid rgba(198, 168, 124, 0.3); margin-top: -70px; position: relative; z-index: 10; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.05); }
+.stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(198, 168, 124, 0.3); border: 1px solid rgba(198, 168, 124, 0.3); margin-top: -70px; position: relative; z-index: 10; border-radius: 8px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.05); }
 .stat-item { background: var(--nadi-charcoal-light); padding: clamp(30px, 5vw, 50px) 20px; text-align: center; transition: all 0.4s; }
 .stat-item:hover { background: var(--nadi-red); transform: translateY(-10px); }
 .stat-item:hover .stat-num, .stat-item:hover .stat-label { color: var(--text-light); }
@@ -144,7 +144,6 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
 
 /* ─── CHARTS WRAPPER ─── */
 .chart-box { background: var(--nadi-pure); padding: clamp(20px, 4vw, 40px); border-radius: 12px; box-shadow: 0 15px 40px rgba(0,0,0,0.05); border: 1px solid var(--nadi-sand); width: 100%; position: relative; }
-/* Essential fix for Chart.js rendering blank inside tabs */
 .chart-container { position: relative; height: 400px; width: 100%; }
 .theme-dark .chart-box { background: var(--nadi-charcoal-light); border-color: rgba(255,255,255,0.05); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
 
@@ -158,6 +157,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
 .eco-title { font-size: 18px; font-weight: 700; color: var(--text-light); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; }
 .eco-desc { font-size: 14px; color: rgba(244, 240, 234, 0.7); line-height: 1.9; }
 
+/* The Rotating Center Core */
 .matrix-core { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 160px; height: 160px; background: var(--nadi-charcoal); border-radius: 50%; border: 2px dashed var(--nadi-gold); display: flex; align-items: center; justify-content: center; text-align: center; font-size: 13px; font-weight: 700; letter-spacing: 3px; color: var(--nadi-red); z-index: 1; box-shadow: 0 0 40px rgba(0,0,0,0.8); }
 .matrix-core::before { content: ''; position: absolute; inset: 10px; border: 1px solid rgba(198, 168, 124, 0.3); border-radius: 50%; animation: spinSlow 20s linear infinite; }
 .matrix-core::after { content: ''; position: absolute; inset: -20px; border: 1px dashed rgba(198, 168, 124, 0.1); border-radius: 50%; animation: spinSlow 30s linear infinite reverse; }
@@ -172,10 +172,10 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
 .phase-panel.active { display: grid; animation: fadeUp 0.8s ease forwards; }
 
 /* ─── MEDIA & MAP EMBEDS ─── */
-.media-wrapper { position: relative; width: 100%; border-radius: 12px; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.15); border: 1px solid rgba(198, 168, 124, 0.3); background: var(--nadi-charcoal); }
+.media-wrapper { position: relative; width: 100%; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.1); border: 1px solid var(--nadi-sand); background: var(--nadi-pure); }
 .video-container { position: relative; padding-bottom: 56.25%; height: 0; }
 .video-container iframe { position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; border: 0; }
-.map-iframe { width: 100% !important; height: clamp(300px, 50vw, 600px); border: 0; filter: contrast(1.1) saturate(1.1); }
+.map-iframe { width: 100% !important; height: clamp(350px, 50vw, 500px); border: 0; }
 
 /* ─── UTILS & ANIMATIONS ─── */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
@@ -188,7 +188,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
   .tab-buttons { display: grid; grid-template-columns: 1fr 1fr; width: 100%; gap: 10px; }
   .tab-btn { width: 100%; padding: 12px 5px; font-size: 10px; white-space: normal; line-height: 1.4; text-align: center; border-radius: 8px; }
 
-  .grid-2, .grid-3, .phase-panel, .ecosystem-matrix { grid-template-columns: 1fr; width: 100%; }
+  .grid-2, .phase-panel, .ecosystem-matrix { grid-template-columns: 1fr; width: 100%; }
   
   .stats-bar { grid-template-columns: 1fr 1fr; margin-top: -30px; }
   
@@ -290,13 +290,12 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
   </section>
 
   <!-- Demographics Chart -->
-  <section style="background: var(--nadi-cream-dark);">
+  <section class="theme-sand">
     <div class="container grid-2">
       <div class="text-content reveal">
         <div class="eyebrow">The Structural Gap</div>
         <h2 class="title">Demographic <em>Imperative</em></h2>
-        <p class="desc">The district faces a severe housing deficit of 7,876 units amid strong owner-occupier demand. Concurrently, Jerantut is transitioning into an aging society, with the 65+ demographic exceeding the 7% threshold.</p>
-        <p class="desc" style="margin-top: 15px;">NADI's tripartite mission is a direct architectural response: to foster a resilient retirement ecosystem, capture the global wellness market, and staunch youth outmigration via high-yield technical employment and bespoke housing provisions.</p>
+        <p class="desc">The district faces a severe housing deficit of 7,876 units amid strong owner-occupier demand. Concurrently, Jerantut is transitioning into an aging society, with the 65+ demographic exceeding the 7% threshold. NADI's tripartite mission is a direct architectural response: to foster a resilient retirement ecosystem, capture the global wellness market, and staunch youth outmigration via high-yield technical employment and bespoke housing provisions.</p>
       </div>
       <div class="chart-box reveal" style="transition-delay: 0.2s; border: none; background: var(--nadi-cream);">
         <div class="chart-container">
@@ -320,8 +319,8 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
       </div>
       
       <div class="reveal" style="margin-bottom: 60px;">
-        <!-- Directly addressing the exact transparent map file requested -->
-        <img src="Masterplan Diagram transparent.png" alt="NADI Masterplan Transparent Diagram" class="img-card" style="box-shadow: none; border: none; filter: drop-shadow(0 0 40px rgba(198, 168, 124, 0.15));">
+        <!-- Targeting Transparent Image directly -->
+        <img src="Masterplan Diagram transparent.png" alt="NADI Masterplan Transparent" class="img-card" style="box-shadow: none; border: none; filter: drop-shadow(0 0 40px rgba(198, 168, 124, 0.15));">
       </div>
 
       <div class="grid-2 text-left mt-5" style="margin-top: 100px;">
@@ -622,7 +621,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
           <img src="Site analysis map.png" alt="Site Analysis GIS Map" class="img-card" onerror="this.src='Site analysis map_2.jpg'">
         </div>
         <div class="reveal" style="transition-delay: 0.2s;">
-          <img src="pestel.png" alt="PESTLE Analysis Matrix" class="img-card" style="background: white;">
+          <img src="pestel.png" alt="PESTLE Analysis Matrix" class="img-card" style="background: white; border: 1px solid var(--nadi-sand);">
         </div>
       </div>
     </div>
@@ -725,7 +724,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
           responsive: true, maintainAspectRatio: false,
           plugins: { legend: { display: false }, title: { display: true, text: 'Strategic Housing Provision', font: { family: 'Montserrat', size: 14 } } },
           scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } },
-          animation: { duration: 2000, easing: 'easeOutQuart' }
+          animation: { duration: 1000, easing: 'easeOutQuart' } /* Speed optimized */
         }
       });
     }
@@ -739,7 +738,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
           labels: ['Sellable Land (571.77 ac)', 'Non-Sellable Land (538.87 ac)'],
           datasets: [{
             data: [51, 49], 
-            backgroundColor: ['#C6A87C', '#4A7055'], /* The New Premium Sage Green */
+            backgroundColor: ['#C6A87C', '#4A7055'], 
             borderWidth: 0, hoverOffset: 10
           }]
         },
@@ -749,7 +748,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
             legend: { position: 'bottom', labels: { color: '#F5F2EB', font: { family: 'Montserrat' }, padding: 20 } },
             title: { display: false }
           },
-          animation: { duration: 2500, animateScale: true }
+          animation: { duration: 1000, animateScale: true } /* Speed optimized */
         }
       });
     }
@@ -770,7 +769,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
         options: {
           responsive: true, maintainAspectRatio: false,
           plugins: { legend: { position: 'bottom', labels: { font: { family: 'Montserrat' } } } },
-          animation: { duration: 2000, animateScale: true }
+          animation: { duration: 1000, animateScale: true } /* Speed optimized */
         }
       });
     }
@@ -786,8 +785,8 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
     document.querySelectorAll('.time-btn')[phaseNum - 1].classList.add('active');
   }
 
-  // Trigger initial chart on load
-  setTimeout(() => initHousingChart(), 200);
+  // Trigger charts rendering with a slight delay so tab containers have physical height
+  setTimeout(() => initCharts(), 200);
 
 </script>
 </body>
