@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>NADI — The Pulse of Jerantut | Premium Masterplan</title>
 
-<!-- Google Fonts: Luxury Serif and Clean Sans -->
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
@@ -16,13 +14,15 @@
   --nadi-red: #8C1D25;       
   --nadi-gold: #C6A87C;      
   --nadi-forest: #4A7055;    
+  
+  /* Dark Modes */
   --nadi-charcoal: #1C1A19;  
   --nadi-charcoal-light: #2A2A2A;
   
   /* Welcoming Earthy Neutrals */
   --nadi-cream: #F5F2EB;     
   --nadi-sand: #E6DFD3;      
-  --nadi-stone: #DCD5C9;     
+  --nadi-stone: #DCD5C9;
   --nadi-pure: #FFFFFF;
   
   /* Text */
@@ -38,8 +38,10 @@ html, body {
   color: var(--text-dark); -webkit-font-smoothing: antialiased;
 }
 
+.site-wrapper { width: 100%; overflow: hidden; position: relative; background: var(--nadi-cream); }
+
 /* ─── SCROLLBAR ─── */
-::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: var(--nadi-sand); }
 ::-webkit-scrollbar-thumb { background: var(--nadi-gold); border-radius: 4px; }
 
@@ -47,15 +49,15 @@ html, body {
 .corporate-banner {
   background: var(--nadi-red); color: var(--nadi-pure); text-align: center;
   padding: 12px 5%; font-size: 10px; letter-spacing: 3px; font-weight: 500;
-  text-transform: uppercase; position: relative; z-index: 1000;
+  text-transform: uppercase; position: relative; z-index: 1001;
 }
 .corporate-banner strong { color: var(--nadi-gold); font-weight: 700; }
 
-/* ─── NAVIGATION ─── */
+/* ─── NAVIGATION (ALWAYS VISIBLE STICKY) ─── */
 nav {
-  position: sticky; top: 0; z-index: 999; display: flex; align-items: center; justify-content: space-between;
-  padding: 0 5%; height: 90px; background: rgba(245, 242, 235, 0.95); backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(198, 168, 124, 0.2); transition: all 0.4s ease;
+  position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5%; height: 90px; background: rgba(245, 242, 235, 0.98); backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(198, 168, 124, 0.3); box-shadow: 0 4px 30px rgba(0,0,0,0.05); transition: all 0.4s ease;
 }
 .nav-logo {
   font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 38px); font-weight: 700;
@@ -63,21 +65,21 @@ nav {
 }
 .nav-logo span { color: var(--nadi-red); }
 
-.tab-buttons { display: flex; gap: 5px; list-style: none; }
+.tab-buttons { display: flex; gap: 8px; list-style: none; }
 .tab-btn {
-  background: transparent; border: 1px solid transparent;
+  background: transparent; border: 1px solid rgba(198, 168, 124, 0.5);
   font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 2px;
   text-transform: uppercase; color: var(--text-muted);
   padding: 14px 28px; border-radius: 50px; cursor: pointer; transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.tab-btn:hover { color: var(--nadi-red); }
-.tab-btn.active { background: var(--nadi-red); color: var(--nadi-pure); box-shadow: 0 10px 25px rgba(140, 29, 37, 0.3); }
+.tab-btn:hover { color: var(--nadi-red); border-color: var(--nadi-red); }
+.tab-btn.active { background: var(--nadi-red); color: var(--nadi-pure); border-color: var(--nadi-red); box-shadow: 0 10px 25px rgba(140, 29, 37, 0.3); }
 
 /* ─── TAB CONTENT CONTROL ─── */
 .tab-pane { display: none; opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
 .tab-pane.active { display: block !important; opacity: 1 !important; transform: translateY(0); }
 
-/* ─── TYPOGRAPHY & LAYOUTS ─── */
+/* ─── TYPOGRAPHY & THEMES ─── */
 section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; }
 .container { max-width: 1400px; margin: 0 auto; padding: 0 5%; width: 100%; }
 .section-header { margin-bottom: clamp(40px, 8vw, 70px); }
@@ -86,52 +88,96 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
   color: var(--nadi-gold); display: flex; align-items: center; gap: 15px; margin-bottom: 20px;
 }
 .eyebrow::before { content: ''; width: 50px; height: 1px; background: var(--nadi-gold); }
-.title { 
-  font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 6vw, 70px); 
-  font-weight: 300; line-height: 1.1; color: var(--text-dark); margin-bottom: 25px; 
-}
+.title { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 6vw, 70px); font-weight: 300; line-height: 1.1; color: var(--text-dark); margin-bottom: 25px; }
 .title em { font-style: italic; color: var(--nadi-red); font-weight: 400; }
 .desc { font-size: clamp(14px, 2vw, 16px); color: var(--text-muted); line-height: 2.1; max-width: 750px; font-weight: 400; }
 
-.theme-dark { background: var(--nadi-charcoal); color: var(--nadi-pure); }
+.theme-dark { background: var(--nadi-charcoal); color: var(--nadi-pure); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
 .theme-dark .title { color: var(--nadi-pure); }
 .theme-dark .desc { color: rgba(255, 255, 255, 0.7); }
 
-.theme-stone { background: var(--nadi-stone); color: var(--text-dark); border-top: 1px solid rgba(0,0,0,0.05); }
+.theme-sand { background: var(--nadi-sand); color: var(--text-dark); border-top: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05); }
+.theme-sand .title { color: var(--text-dark); }
+.theme-sand .desc { color: var(--text-muted); }
+
+.theme-stone { background: var(--nadi-stone); color: var(--text-dark); border-top: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05); }
 
 /* ─── HERO CINEMATIC ─── */
 .hero {
-  min-height: 90vh; background: var(--nadi-cream) url('concept.png') center/cover no-repeat;
+  min-height: 90vh; background: var(--nadi-charcoal) url('concept.png') center/cover no-repeat;
   background-attachment: fixed; position: relative; display: flex; align-items: center; justify-content: center; text-align: center;
 }
-.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(28,26,25,0.95) 0%, rgba(28,26,25,0.7) 50%, rgba(28,26,25,0.4) 100%); }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(28,26,25,0.8) 0%, rgba(28,26,25,0.95) 100%); }
 .hero-content { position: relative; z-index: 2; max-width: 1000px; padding-top: 40px; }
 .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(45px, 8vw, 110px); font-weight: 300; line-height: 1.05; color: var(--nadi-pure); margin-bottom: 30px; }
 .hero-quote { font-family: 'Montserrat', sans-serif; font-size: clamp(12px, 2vw, 15px); font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--nadi-gold); margin-bottom: 35px; line-height: 1.6; }
 
+/* ─── INTERACTIVE HOVER CAROUSEL (NADI SNAPSHOTS) ─── */
+.snapshots-container { position: relative; width: 100%; max-width: 1400px; margin: 40px auto 0; padding: 0 5%; z-index: 20; }
+.snapshots-header { position: relative; z-index: 25; text-align: center; margin-bottom: 30px; }
+.carousel-wrapper { position: relative; display: flex; align-items: center; overflow: hidden; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); background: var(--nadi-pure); border: 1px solid var(--nadi-sand); padding: 15px; z-index: 10; }
+.carousel-track { display: flex; gap: 15px; overflow-x: auto; scrollbar-width: none; scroll-behavior: auto; padding: 10px 0; flex-wrap: nowrap; width: 100%; }
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-item { flex: 0 0 auto; width: clamp(250px, 30vw, 350px); height: 250px; border-radius: 8px; overflow: hidden; position: relative; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: transform 0.3s ease; cursor: pointer; }
+.carousel-item:hover { transform: scale(1.02); }
+.carousel-item img { width: 100%; height: 100%; object-fit: cover; }
+.carousel-label { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 30px 15px 15px; color: white; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+.arrow-btn { position: absolute; top: 0; bottom: 0; width: 80px; background: rgba(0,0,0,0.5); color: var(--nadi-gold); font-size: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 30; border: none; backdrop-filter: blur(5px); opacity: 0; transition: opacity 0.3s; }
+.carousel-wrapper:hover .arrow-btn { opacity: 1; }
+.arrow-btn:hover { background: rgba(0,0,0,0.8); color: var(--nadi-pure); }
+.arrow-left { left: 0; border-radius: 12px 0 0 12px; }
+.arrow-right { right: 0; border-radius: 0 12px 12px 0; }
+
+/* ─── MODAL / LIGHTBOX SYSTEM ─── */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s; backdrop-filter: blur(10px); padding: 20px; }
+.modal-overlay.active { display: flex; opacity: 1; }
+.modal-content { background: var(--nadi-pure); border-radius: 16px; width: 100%; max-width: 1000px; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; transform: translateY(30px); transition: transform 0.4s; box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
+.modal-overlay.active .modal-content { transform: translateY(0); }
+.modal-header { padding: 20px 30px; border-bottom: 1px solid var(--nadi-sand); display: flex; justify-content: space-between; align-items: center; background: var(--nadi-cream); }
+.modal-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--nadi-red); font-weight: 600; }
+.modal-close { background: none; border: none; font-size: 30px; cursor: pointer; color: var(--text-muted); transition: color 0.3s; }
+.modal-close:hover { color: var(--nadi-red); }
+.modal-body { padding: 30px; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; }
+.modal-image { width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); object-fit: contain; max-height: 60vh; }
+.modal-desc { font-size: 15px; color: var(--text-muted); line-height: 1.8; text-align: center; }
+
 /* ─── GRIDS & CARDS ─── */
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 8vw, 80px); align-items: center; width: 100%; }
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(30px, 5vw, 40px); width: 100%; }
-.img-card { width: 100%; max-width: 100%; border-radius: 12px; box-shadow: 0 25px 60px rgba(0,0,0,0.08); transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); border: 1px solid var(--nadi-sand); }
+.img-card { width: 100%; max-width: 100%; border-radius: 12px; box-shadow: 0 25px 60px rgba(0,0,0,0.08); transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); border: 1px solid var(--nadi-sand); cursor: pointer; }
 .theme-dark .img-card { border: 1px solid rgba(255,255,255,0.05); }
-.img-card:hover { transform: scale(1.02); box-shadow: 0 30px 60px rgba(0,0,0,0.12); }
+.img-card:hover { transform: scale(1.02); box-shadow: 0 30px 60px rgba(0,0,0,0.15); }
 
 /* ─── STATS BAR ─── */
-.stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(198, 168, 124, 0.3); border: 1px solid rgba(198, 168, 124, 0.3); margin-top: -70px; position: relative; z-index: 10; border-radius: 8px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.05); }
-.stat-item { background: var(--nadi-charcoal-light); padding: clamp(30px, 5vw, 50px) 20px; text-align: center; transition: all 0.4s; }
-.stat-item:hover { background: var(--nadi-red); transform: translateY(-10px); }
-.stat-item:hover .stat-num, .stat-item:hover .stat-label { color: var(--text-light); }
-.stat-num { font-family: 'Cormorant Garamond', serif; font-size: clamp(35px, 6vw, 55px); font-weight: 600; color: var(--nadi-gold); line-height: 1; margin-bottom: 15px; transition: color 0.4s; }
-.stat-label { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--nadi-sand); transition: color 0.4s; }
+.stats-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: rgba(198, 168, 124, 0.2); border: 1px solid rgba(198, 168, 124, 0.2); position: relative; z-index: 10; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.05); }
+.stat-item { background: var(--nadi-pure); padding: clamp(30px, 5vw, 50px) 20px; text-align: center; transition: all 0.4s; }
+.stat-item:hover { background: var(--nadi-sand); transform: translateY(-5px); }
+.stat-num { font-family: 'Cormorant Garamond', serif; font-size: clamp(35px, 6vw, 55px); font-weight: 600; color: var(--nadi-red); line-height: 1; margin-bottom: 15px; transition: color 0.4s; }
+.stat-label { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); transition: color 0.4s; }
 
-/* ─── THE THREE PULSES (DETAILED GRID LAYOUT) ─── */
-.pulse-block { margin-bottom: 100px; padding-bottom: 100px; border-bottom: 1px solid var(--nadi-sand); }
+/* ─── HOUSING FEATURES ─── */
+.feature-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 30px; }
+.feature-list li { font-size: 14px; color: var(--text-dark); padding: 15px; background: var(--nadi-pure); border-left: 3px solid var(--nadi-red); border-radius: 0 8px 8px 0; font-weight: 500; transition: transform 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+.feature-list li:hover { transform: translateX(10px); background: var(--nadi-sand); }
+
+/* ─── INTERACTIVE VISUAL PORTFOLIO (ARCHITECTURAL SHOWCASE) ─── */
+.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
+.portfolio-item { position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.05); cursor: pointer; border: 1px solid var(--nadi-sand); transition: transform 0.4s ease; background: var(--nadi-pure); }
+.portfolio-item img { width: 100%; height: 280px; object-fit: cover; transition: transform 0.6s ease; }
+.portfolio-item:hover { transform: translateY(-10px); box-shadow: 0 25px 60px rgba(0,0,0,0.15); border-color: var(--nadi-gold); }
+.portfolio-item:hover img { transform: scale(1.05); }
+.portfolio-content { padding: 25px; position: relative; background: var(--nadi-pure); z-index: 2; }
+.portfolio-category { font-size: 10px; font-weight: 700; color: var(--nadi-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+.portfolio-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--nadi-red); font-weight: 600; margin-bottom: 10px; }
+.portfolio-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+/* ─── THE THREE PULSES (LIGHT & WELCOMING THEME RESTORED) ─── */
+.pulse-block { margin-bottom: 100px; padding-bottom: 100px; border-bottom: 1px solid rgba(0,0,0,0.05); }
 .pulse-block:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
 .pulse-header { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 60px; }
 .pulse-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 6vw, 65px); color: var(--nadi-red); line-height: 1; margin-bottom: 15px; }
-.pulse-metrics { display: inline-flex; gap: 20px; background: var(--nadi-pure); padding: 10px 25px; border-radius: 50px; border: 1px solid var(--nadi-sand); box-shadow: 0 10px 20px rgba(0,0,0,0.03); }
+.pulse-metrics { display: inline-flex; gap: 20px; background: var(--nadi-pure); padding: 10px 25px; border-radius: 50px; border: 1px solid var(--nadi-sand); box-shadow: 0 10px 20px rgba(0,0,0,0.03); margin-bottom: 20px; }
 .p-metric { font-size: 12px; color: var(--nadi-gold); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
-
 .pulse-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
 .pulse-category { background: var(--nadi-pure); padding: 40px; border-radius: 12px; border: 1px solid var(--nadi-sand); box-shadow: 0 15px 40px rgba(0,0,0,0.03); transition: transform 0.4s; }
 .pulse-category:hover { transform: translateY(-10px); border-color: var(--nadi-gold); box-shadow: 0 25px 50px rgba(198, 168, 124, 0.15); }
@@ -142,26 +188,15 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
 .pulse-list li:last-child { border-bottom: none; }
 .pulse-list li strong { color: var(--nadi-red); font-weight: 600; }
 
-/* ─── CHARTS WRAPPER ─── */
+/* ─── CHARTS & MEDIA ─── */
 .chart-box { background: var(--nadi-pure); padding: clamp(20px, 4vw, 40px); border-radius: 12px; box-shadow: 0 15px 40px rgba(0,0,0,0.05); border: 1px solid var(--nadi-sand); width: 100%; position: relative; }
 .chart-container { position: relative; height: 400px; width: 100%; }
 .theme-dark .chart-box { background: var(--nadi-charcoal-light); border-color: rgba(255,255,255,0.05); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
 
-/* ─── INTERACTIVE CLOSED LOOP CSS ENGINE ─── */
-.ecosystem-matrix { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 1000px; margin: 0 auto; position: relative; padding: 60px 0; }
-.eco-node { background: var(--nadi-charcoal-light); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: clamp(25px, 5vw, 40px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); transition: all 0.5s ease; position: relative; z-index: 2; overflow: hidden; color: var(--nadi-pure); }
-.eco-node::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, transparent, rgba(198, 168, 124, 0.05)); opacity: 0; transition: opacity 0.5s; }
-.eco-node:hover { transform: translateY(-10px) scale(1.02); border-color: var(--nadi-gold); box-shadow: 0 30px 60px rgba(198, 168, 124, 0.15); }
-.eco-node:hover::after { opacity: 1; }
-.eco-icon { font-family: 'Cormorant Garamond', serif; font-size: 50px; color: var(--nadi-gold); margin-bottom: 20px; font-weight: 300; line-height: 1; }
-.eco-title { font-size: 18px; font-weight: 700; color: var(--text-light); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; }
-.eco-desc { font-size: 14px; color: rgba(244, 240, 234, 0.7); line-height: 1.9; }
-
-/* The Rotating Center Core */
-.matrix-core { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 160px; height: 160px; background: var(--nadi-charcoal); border-radius: 50%; border: 2px dashed var(--nadi-gold); display: flex; align-items: center; justify-content: center; text-align: center; font-size: 13px; font-weight: 700; letter-spacing: 3px; color: var(--nadi-red); z-index: 1; box-shadow: 0 0 40px rgba(0,0,0,0.8); }
-.matrix-core::before { content: ''; position: absolute; inset: 10px; border: 1px solid rgba(198, 168, 124, 0.3); border-radius: 50%; animation: spinSlow 20s linear infinite; }
-.matrix-core::after { content: ''; position: absolute; inset: -20px; border: 1px dashed rgba(198, 168, 124, 0.1); border-radius: 50%; animation: spinSlow 30s linear infinite reverse; }
-@keyframes spinSlow { 100% { transform: rotate(360deg); } }
+.media-wrapper { position: relative; width: 100%; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.1); border: 1px solid var(--nadi-sand); background: var(--nadi-pure); }
+.map-iframe { width: 100% !important; height: clamp(350px, 50vw, 500px); border: 0; }
+.video-container { position: relative; padding-bottom: 56.25%; height: 0; }
+.video-container iframe { position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; border: 0; }
 
 /* ─── TIMELINE ─── */
 .timeline-btn-group { display: flex; border-bottom: 2px solid var(--nadi-sand); margin-bottom: 60px; }
@@ -171,11 +206,21 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
 .phase-panel { display: none; grid-template-columns: 1fr 1.2fr; gap: clamp(40px, 8vw, 80px); align-items: center; width: 100%; }
 .phase-panel.active { display: grid; animation: fadeUp 0.8s ease forwards; }
 
-/* ─── MEDIA & MAP EMBEDS ─── */
-.media-wrapper { position: relative; width: 100%; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.1); border: 1px solid var(--nadi-sand); background: var(--nadi-pure); }
-.video-container { position: relative; padding-bottom: 56.25%; height: 0; }
-.video-container iframe { position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; border: 0; }
-.map-iframe { width: 100% !important; height: clamp(350px, 50vw, 500px); border: 0; }
+/* ─── INTERACTIVE CLOSED LOOP CSS ENGINE (DARK THEME FIXED) ─── */
+.ecosystem-matrix { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 1000px; margin: 0 auto; position: relative; padding: 60px 0; }
+.eco-node { background: var(--nadi-charcoal-light); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: clamp(25px, 5vw, 40px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); transition: all 0.5s ease; position: relative; z-index: 2; overflow: hidden; color: var(--nadi-pure); }
+.eco-node::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, transparent, rgba(198, 168, 124, 0.05)); opacity: 0; transition: opacity 0.5s; }
+.eco-node:hover { transform: translateY(-10px) scale(1.02); border-color: var(--nadi-gold); box-shadow: 0 30px 60px rgba(198, 168, 124, 0.15); }
+.eco-node:hover::after { opacity: 1; }
+.eco-icon { font-family: 'Cormorant Garamond', serif; font-size: 50px; color: var(--nadi-gold); margin-bottom: 20px; font-weight: 300; line-height: 1; }
+.eco-title { font-size: 18px; font-weight: 700; color: var(--nadi-pure); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; }
+.eco-desc { font-size: 14px; color: rgba(255, 255, 255, 0.7); line-height: 1.9; }
+
+/* The Rotating Center Core */
+.matrix-core { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 160px; height: 160px; background: var(--nadi-charcoal); border-radius: 50%; border: 2px dashed var(--nadi-gold); display: flex; align-items: center; justify-content: center; text-align: center; font-size: 13px; font-weight: 700; letter-spacing: 3px; color: var(--nadi-red); z-index: 1; box-shadow: 0 0 40px rgba(0,0,0,0.8); }
+.matrix-core::before { content: ''; position: absolute; inset: 10px; border: 1px solid rgba(198, 168, 124, 0.3); border-radius: 50%; animation: spinSlow 20s linear infinite; }
+.matrix-core::after { content: ''; position: absolute; inset: -20px; border: 1px dashed rgba(198, 168, 124, 0.1); border-radius: 50%; animation: spinSlow 30s linear infinite reverse; }
+@keyframes spinSlow { 100% { transform: rotate(360deg); } }
 
 /* ─── UTILS & ANIMATIONS ─── */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
@@ -185,8 +230,9 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
 /* ─── MOBILE RESPONSIVENESS ─── */
 @media (max-width: 1024px) {
   nav { flex-direction: column; height: auto; padding: 20px 5%; align-items: center; gap: 15px; }
-  .tab-buttons { display: grid; grid-template-columns: 1fr 1fr; width: 100%; gap: 10px; }
-  .tab-btn { width: 100%; padding: 12px 5px; font-size: 10px; white-space: normal; line-height: 1.4; text-align: center; border-radius: 8px; }
+  .tab-buttons { display: flex; overflow-x: auto; width: 100%; gap: 10px; padding-bottom: 5px; scrollbar-width: none; }
+  .tab-buttons::-webkit-scrollbar { display: none; }
+  .tab-btn { white-space: nowrap; flex: 0 0 auto; }
 
   .grid-2, .phase-panel, .ecosystem-matrix { grid-template-columns: 1fr; width: 100%; }
   
@@ -195,39 +241,48 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
   .matrix-core { display: none; }
 
   .timeline-btn-group { display: flex; flex-direction: column; gap: 10px; border-bottom: none; margin-bottom: 40px; }
-  .time-btn { border: 1px solid var(--nadi-sand); border-radius: 8px; padding: 15px; margin-bottom: 0; }
+  .time-btn { border: 1px solid var(--nadi-sand); border-radius: 8px; padding: 15px; margin-bottom: 0; white-space: normal; line-height: 1.4;}
   .time-btn.active { background: var(--nadi-red); color: var(--nadi-pure); border-color: var(--nadi-red); }
 }
 
 @media (max-width: 600px) {
   .stats-bar { grid-template-columns: 1fr; }
   .chart-container { height: 300px; }
+  .carousel-item { width: 85vw; }
 }
 </style>
 </head>
 <body>
 
-<div class="site-wrapper">
-
-<!-- CORPORATE BANNER -->
-<div class="corporate-banner">
-  <strong>IIUM Urban Planning</strong> &nbsp;|&nbsp; Masterplan Proposition: Lot 4246, Mukim Pulau Tawar, Jerantut, Pahang Darul Makmur
+<div class="modal-overlay" id="galleryModal" onclick="closeModal(event)">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title" id="modalTitle">Architectural Detail</h3>
+      <button class="modal-close" onclick="document.getElementById('galleryModal').classList.remove('active')">×</button>
+    </div>
+    <div class="modal-body">
+      <img src="" alt="Detail View" class="modal-image" id="modalImage">
+      <p class="modal-desc" id="modalDesc"></p>
+    </div>
+  </div>
 </div>
 
-<!-- NAVIGATION -->
+<div class="site-wrapper">
+
+<div class="corporate-banner">
+  <strong>IIUM Urban Planning</strong>  |  Masterplan Proposition: Lot 4246, Mukim Pulau Tawar, Jerantut, Pahang Darul Makmur
+</div>
+
 <nav id="mainNav">
   <div class="nav-logo" onclick="switchTab('tab-genesis', this)">N<span>A</span>DI</div>
   <ul class="tab-buttons">
     <li><button class="tab-btn active" onclick="switchTab('tab-genesis', this)">The Genesis</button></li>
-    <li><button class="tab-btn" onclick="switchTab('tab-masterplan', this)">Masterplan & Typologies</button></li>
+    <li><button class="tab-btn" onclick="switchTab('tab-masterplan', this)">Masterplan & Sectors</button></li>
     <li><button class="tab-btn" onclick="switchTab('tab-zones', this)">The Three Pulses</button></li>
-    <li><button class="tab-btn" onclick="switchTab('tab-economics', this)">Economics & Phasing</button></li>
+    <li><button class="tab-btn" onclick="switchTab('tab-economics', this)">Economics & Delivery</button></li>
   </ul>
 </nav>
 
-<!-- ==========================================
-     TAB 1: THE GENESIS & CONTEXT
-=========================================== -->
 <div id="tab-genesis" class="tab-pane active">
   <section class="hero" style="padding-top: 0;">
     <div class="hero-overlay"></div>
@@ -243,7 +298,65 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
     </div>
   </section>
 
-  <div class="container">
+  <div class="snapshots-container reveal" style="margin-top: -60px;">
+     <div class="snapshots-header">
+        <div class="eyebrow" style="justify-content: center; color: var(--nadi-gold); margin-bottom: 10px;">Visual Gallery</div>
+        <h2 class="title" style="color: var(--nadi-charcoal); font-size: 28px; margin-bottom: 0;">NADI Snapshots</h2>
+     </div>
+     <div class="carousel-wrapper">
+        <button class="arrow-btn arrow-left" onmouseenter="startCarouselScroll(-1)" onmouseleave="stopCarouselScroll()">❮</button>
+        <div class="carousel-track" id="nadiCarousel">
+           <div class="carousel-item" onclick="openModal('Housing Concept', 'Housing.png', 'Integration of biophilic elements within the residential ecosystem, bridging indoor comforts with natural healing environments.')">
+              <img src="Housing.png" alt="Housing" onerror="this.src='Housing.jpg'"><div class="carousel-label">Housing Concept</div>
+           </div>
+           <div class="carousel-item" onclick="openModal('Terrace Architecture', 'Housing 1.png', 'Modern, high-efficiency terrace units engineered to combat the regional housing deficit while providing affordable entry for youth.')">
+              <img src="Housing 1.png" alt="Housing 1" onerror="this.src='Housing 1.jpg'"><div class="carousel-label">Terrace Architecture</div>
+           </div>
+           <div class="carousel-item" onclick="openModal('Commercial Hub', 'Commercial.png', 'The vibrant commercial epicenter designed to activate youth engagement and provide diverse retail opportunities.')">
+              <img src="Commercial.png" alt="Commercial" onerror="this.src='Commercial.jpg'"><div class="carousel-label">Commercial Hub</div>
+           </div>
+           <div class="carousel-item" onclick="openModal('Retail Promenade', 'Commercial 1.png', 'Walkable, waterfront-facing retail units integrating dining, boutique commerce, and active aging showrooms.')">
+              <img src="Commercial 1.png" alt="Commercial 1" onerror="this.src='Commercial 1.jpg'"><div class="carousel-label">Retail Promenade</div>
+           </div>
+           <div class="carousel-item" onclick="openModal('Industrial Park', 'Industrial.png', 'The high-yield manufacturing zone focusing exclusively on bio-medical and pharmaceutical processing to drive Jerantut\'s economy.')">
+              <img src="Industrial.png" alt="Industrial" onerror="this.src='Industrial.jpg'"><div class="carousel-label">Industrial Park</div>
+           </div>
+           <div class="carousel-item" onclick="openModal('Factory Units', 'Industrial 1.png', 'Agile incubation spaces designed for emerging biotech startups and local agricultural processing integrations.')">
+              <img src="Industrial 1.png" alt="Industrial 1" onerror="this.src='Industrial 1.jpg'"><div class="carousel-label">Factory Units</div>
+           </div>
+           <div class="carousel-item" onclick="openModal('Manufacturing', 'Industrial 2.png', 'Mid-tier nutraceutical semi-detached factories equipped for advanced R&D and specialized production.')">
+              <img src="Industrial 2.png" alt="Industrial 2" onerror="this.src='Industrial 2.jpg'"><div class="carousel-label">Manufacturing</div>
+           </div>
+           <div class="carousel-item" onclick="openModal('Bungalow Spaces', 'Housing 2.png', 'Premium Eco-Nadi sanctuaries designed specifically for the discerning retirement and medical tourism market.')">
+              <img src="Housing 2.png" alt="Housing 2" onerror="this.src='Housing 2.jpg'"><div class="carousel-label">Bungalow Spaces</div>
+           </div>
+           <div class="carousel-item" onclick="openModal('Semi-D Design', 'Housing 3.png', 'Sanubari Serene semi-detached units fostering multi-generational living with spacious, adaptable layouts.')">
+              <img src="Housing 3.png" alt="Housing 3" onerror="this.src='Housing 3.jpg'"><div class="carousel-label">Semi-D Design</div>
+           </div>
+           <div class="carousel-item" onclick="openModal('Cluster Homes', 'Housing 4.png', 'Forestia residential clusters designed to balance community interaction with essential private sanctuary space.')">
+              <img src="Housing 4.png" alt="Housing 4" onerror="this.src='Housing 4.jpg'"><div class="carousel-label">Cluster Homes</div>
+           </div>
+           <div class="carousel-item" onclick="openModal('Cultural Anchors', 'Commercial 2.png', 'The monumental Al-Nadi Mosque and the surrounding 7.75 acres of Ceremonial Gardens serving as the civic heart of the estate.')">
+              <img src="Commercial 2.png" alt="Commercial 2" onerror="this.src='Commercial 2.jpg'"><div class="carousel-label">Cultural Anchors</div>
+           </div>
+           <div class="carousel-item" onclick="openModal('Event Spaces', 'Commercial 3.png', 'The 1,500-seat Theater of Innovation, the first Grade-A MICE center in a 100km radius designed to capture corporate tourism.')">
+              <img src="Commercial 3.png" alt="Commercial 3" onerror="this.src='Commercial 3.jpg'"><div class="carousel-label">Event Spaces</div>
+           </div>
+           <div class="carousel-item" onclick="openModal('Logistics Core', 'Industrial 3.png', 'Heavy medical equipment detached factories requiring specialized supply chain logistics and massive footprint availability.')">
+              <img src="Industrial 3.png" alt="Industrial 3" onerror="this.src='Industrial 3.jpg'"><div class="carousel-label">Logistics Core</div>
+           </div>
+           <div class="carousel-item" onclick="openModal('Processing Labs', 'Industrial 4.png', 'Controlled environments engineered specifically to meet international pharmaceutical and bio-tech manufacturing standards.')">
+              <img src="Industrial 4.png" alt="Industrial 4" onerror="this.src='Industrial 4.jpg'"><div class="carousel-label">Processing Labs</div>
+           </div>
+           <div class="carousel-item" onclick="openModal('Bio-Tech Facilities', 'Industrial 5.png', 'Free-standing industrial anchors intended for multi-national medical corporations to establish a regional headquarters in Pahang.')">
+              <img src="Industrial 5.png" alt="Industrial 5" onerror="this.src='Industrial 5.jpg'"><div class="carousel-label">Bio-Tech Facilities</div>
+           </div>
+        </div>
+        <button class="arrow-btn arrow-right" onmouseenter="startCarouselScroll(1)" onmouseleave="stopCarouselScroll()">❯</button>
+     </div>
+  </div>
+
+  <div class="container" style="margin-top: 80px;">
     <div class="stats-bar reveal">
       <div class="stat-item">
         <div class="stat-num" data-target="104771">0</div>
@@ -264,7 +377,6 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
     </div>
   </div>
 
-  <!-- Multimedia: Video & Maps -->
   <section>
     <div class="container grid-2">
       <div class="reveal">
@@ -283,13 +395,12 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
         <h2 class="title">Strategic <em>Connectivity</em></h2>
         <p class="desc" style="margin-bottom: 30px;">Commanding a highly strategic position at <strong>3°53'59.85"N 102°22'39.00"E</strong>, the site boasts direct, unhindered accessibility via Route 64. Its immediate adjacency to the proposed KTM rail network facilitates unparalleled Transit-Oriented Development (TOD).</p>
         <div class="media-wrapper">
-          <iframe class="map-iframe" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15918.5!2d102.3775!3d3.899958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2smy!4v1700000000000!5m2!1sen!2smy" allowfullscreen="" loading="lazy"></iframe>
+          <iframe class="map-iframe" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15918.5!2d102.3775!3d3.899958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2smy!4v1700000000000!5m2!1sen!2smy" loading="lazy" allowfullscreen=""></iframe>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Demographics Chart -->
   <section class="theme-sand">
     <div class="container grid-2">
       <div class="text-content reveal">
@@ -306,10 +417,8 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
   </section>
 </div>
 
-<!-- ==========================================
-     TAB 2: MASTERPLAN & TYPOLOGIES
-=========================================== -->
 <div id="tab-masterplan" class="tab-pane theme-dark">
+  
   <section style="padding-top: 100px;">
     <div class="container text-center">
       <div class="section-header reveal">
@@ -319,13 +428,12 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
       </div>
       
       <div class="reveal" style="margin-bottom: 60px;">
-        <!-- Targeting Transparent Image directly -->
-        <img src="Masterplan Diagram transparent.png" alt="NADI Masterplan Transparent" class="img-card" style="box-shadow: none; border: none; filter: drop-shadow(0 0 40px rgba(198, 168, 124, 0.15));">
+        <img src="Masterplan Diagram transparent.png" alt="NADI Masterplan Transparent Diagram" class="img-card" style="box-shadow: none; border: none; filter: drop-shadow(0 0 40px rgba(198, 168, 124, 0.15));" onerror="this.src='FINAL LAYOUT NADI-1.jpg'">
       </div>
 
       <div class="grid-2 text-left mt-5" style="margin-top: 100px;">
         <div class="reveal">
-          <div class="chart-box dark-panel">
+          <div class="chart-box" style="background: var(--nadi-charcoal); border: 1px solid rgba(255,255,255,0.05);">
             <h3 style="text-align: center; color: var(--nadi-gold); font-family: 'Cormorant Garamond', serif; font-size: 24px; margin-bottom: 20px;">The 51/49 Equilibrium</h3>
             <div class="chart-container" style="height: 350px;">
               <canvas id="allocationChart"></canvas>
@@ -345,28 +453,76 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
     </div>
   </section>
 
-  <section style="background: var(--nadi-pure); color: var(--text-dark);">
-    <div class="container grid-2">
-      <div class="reveal">
-        <img src="housing sizes.png" alt="Housing Typologies" class="img-card" onerror="this.src='housing sizes_2.jpg'">
+  <section class="theme-sand">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <div class="eyebrow" style="justify-content: center;">Interactive Visual Portfolio</div>
+        <h2 class="title">Architectural <em>Showcase</em></h2>
+        <p class="desc mx-auto">Explore the detailed structural innovations spanning across NADI's residential, commercial, and industrial sectors. Click on any rendering to review specific architectural capabilities.</p>
       </div>
-      <div class="reveal" style="transition-delay: 0.2s;">
-        <div class="eyebrow">Universal Design Paradigm</div>
-        <h2 class="title">Symbiotic <em>Interflow</em></h2>
-        <p class="desc" style="color: var(--text-dark);">The NADI Interflow Framework is a radical, empathetic reimagining of residential zoning. Rather than isolating demographics, we purposefully weave them together. Ground-level, barrier-free bungalows embrace our elderly residents with absolute dignity, while flexible upper-level studio configurations cater directly to dynamic, remote-working youths.</p>
+
+      <div class="portfolio-grid reveal">
         
-        <div style="margin-top: 40px; padding: 30px; background: var(--nadi-cream); border-radius: 12px; border-left: 4px solid var(--nadi-red); box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-          <h4 style="font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--nadi-charcoal); margin-bottom: 15px;">Smart Healthcare Integration</h4>
-          <p style="font-size: 14px; color: var(--text-muted); line-height: 1.8;">Every residence is future-proofed with <strong>NADI Smart Sensor Arrays</strong> for preventative ambient monitoring, built-in <strong>Caregiver Alert Stations</strong>, and direct telemetry linked instantly to the central Geriatric Hospital.</p>
+        <div class="portfolio-item" onclick="openModal('Residential Interflow', 'Housing.png', 'The NADI Interflow Framework reimagines housing by weaving youth migration and elderly aging into a unified, symbiotic architectural ecosystem.')">
+          <img src="Housing.png" alt="Housing" onerror="this.src='Housing.jpg'">
+          <div class="portfolio-content">
+            <div class="portfolio-category">Residential Hub</div>
+            <h3 class="portfolio-title">Symbiotic Interflow</h3>
+            <p class="portfolio-desc">Ground-level elderly bungalows integrated with flexible upper-level youth studios.</p>
+          </div>
         </div>
+
+        <div class="portfolio-item" onclick="openModal('Terrace Architecture', 'Housing 1.png', 'Equipped with NADI Smart Sensor Arrays and Caregiver Alert Stations directly integrated into the unit layouts.')">
+          <img src="Housing 1.png" alt="Housing 1" onerror="this.src='Housing 1.jpg'">
+          <div class="portfolio-content">
+            <div class="portfolio-category">Residential Hub</div>
+            <h3 class="portfolio-title">Terrace Provision</h3>
+            <p class="portfolio-desc">High-efficiency, modern housing designed to neutralize regional deficits.</p>
+          </div>
+        </div>
+
+        <div class="portfolio-item" onclick="openModal('Commercial Promenades', 'Commercial 1.png', 'Walkable, waterfront-facing retail units integrating dining, boutique commerce, and active aging showrooms.')">
+          <img src="Commercial 1.png" alt="Commercial 1" onerror="this.src='Commercial 1.jpg'">
+          <div class="portfolio-content">
+            <div class="portfolio-category">Commercial Center</div>
+            <h3 class="portfolio-title">NADI Promenade</h3>
+            <p class="portfolio-desc">95 Boulevard Shoplots supporting a vibrant, youth-centered lifestyle.</p>
+          </div>
+        </div>
+
+        <div class="portfolio-item" onclick="openModal('Corporate Hospitality', 'Commercial 3.png', 'The 1,500-seat Theater of Innovation, establishing the first Grade-A MICE center in a 100km radius.')">
+          <img src="Commercial 3.png" alt="Commercial 3" onerror="this.src='Commercial 3.jpg'">
+          <div class="portfolio-content">
+            <div class="portfolio-category">Commercial Center</div>
+            <h3 class="portfolio-title">MICE Event Spaces</h3>
+            <p class="portfolio-desc">Advanced corporate venues designed to capture global tourism and conventions.</p>
+          </div>
+        </div>
+
+        <div class="portfolio-item" onclick="openModal('Manufacturing Precision', 'Industrial 2.png', 'Mid-tier nutraceutical semi-detached factories equipped for advanced R&D and specialized production processes.')">
+          <img src="Industrial 2.png" alt="Industrial 2" onerror="this.src='Industrial 2.jpg'">
+          <div class="portfolio-content">
+            <div class="portfolio-category">Industrial Zone</div>
+            <h3 class="portfolio-title">Bio-Medical Hub</h3>
+            <p class="portfolio-desc">Pioneering facilities targeting the lucrative health and pharmaceutical markets.</p>
+          </div>
+        </div>
+
+        <div class="portfolio-item" onclick="openModal('Enterprise Incubation', 'Industrial 1.png', 'Agile incubation spaces designed for emerging biotech startups and local agricultural processing integrations.')">
+          <img src="Industrial 1.png" alt="Industrial 1" onerror="this.src='Industrial 1.jpg'">
+          <div class="portfolio-content">
+            <div class="portfolio-category">Industrial Zone</div>
+            <h3 class="portfolio-title">Factory Units</h3>
+            <p class="portfolio-desc">Adaptive spaces fostering regional entrepreneurship and technical growth.</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
+
 </div>
 
-<!-- ==========================================
-     TAB 3: THE THREE PULSES (EXTREME DATA DIVE)
-=========================================== -->
 <div id="tab-zones" class="tab-pane theme-sand">
   <section style="padding-top: 100px;">
     <div class="container">
@@ -376,7 +532,6 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
         <p class="desc mx-auto">A visionary tripartite division of the 1,110-acre estate. Each zone functions as a highly specialized, self-sustaining urban organ driving the broader economic and social resurgence of Jerantut.</p>
       </div>
 
-      <!-- DEGUPAN -->
       <div class="pulse-block reveal">
         <div class="pulse-header">
           <h3 class="pulse-title">Degupan NADI</h3>
@@ -420,7 +575,6 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
         </div>
       </div>
 
-      <!-- BAYU -->
       <div class="pulse-block reveal">
         <div class="pulse-header">
           <h3 class="pulse-title" style="color: var(--nadi-gold);">Bayu NADI</h3>
@@ -459,7 +613,6 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
         </div>
       </div>
 
-      <!-- HAYAT -->
       <div class="pulse-block reveal" style="border: none; margin: 0; padding: 0;">
         <div class="pulse-header">
           <h3 class="pulse-title" style="color: var(--nadi-forest);">Hayat NADI</h3>
@@ -502,9 +655,6 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
   </section>
 </div>
 
-<!-- ==========================================
-     TAB 4: ECONOMICS & PHASING
-=========================================== -->
 <div id="tab-economics" class="tab-pane">
   
   <section class="theme-stone">
@@ -529,7 +679,6 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
     </div>
   </section>
 
-  <!-- CSS INTERACTIVE CLOSED LOOP ENGINE (DARK THEME RESTORED) -->
   <section class="theme-dark" style="padding: 120px 0;">
     <div class="container">
       <div class="section-header text-center reveal">
@@ -608,7 +757,6 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
     </div>
   </section>
 
-  <!-- PESTLE & SITE ANALYSIS -->
   <section class="theme-dark">
     <div class="container">
       <div class="section-header reveal text-center">
@@ -616,7 +764,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
         <h2 class="title">Site & <em>PESTLE Analysis</em></h2>
         <p class="desc mx-auto">Rigorous evaluation of environmental sensitivities (272.19 acres of watershed basin, 258.71 acres of river buffers) juxtaposed with exhaustive Political, Economic, Social, Technological, Legal, and Environmental (PESTLE) due diligence.</p>
       </div>
-      <div class="grid-2" style="gap: 60px;">
+      <div class="grid-2" style="gap: 60px; margin-bottom: 120px;">
         <div class="reveal">
           <img src="Site analysis map.png" alt="Site Analysis GIS Map" class="img-card" onerror="this.src='Site analysis map_2.jpg'">
         </div>
@@ -624,26 +772,31 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
           <img src="pestel.png" alt="PESTLE Analysis Matrix" class="img-card" style="background: white; border: 1px solid var(--nadi-sand);">
         </div>
       </div>
+
+      <div class="section-header reveal text-center" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 100px;">
+        <div class="eyebrow" style="justify-content: center; color: var(--nadi-gold);">IIUM Urban Planning</div>
+        <h2 class="title">The <em>Visionaries</em></h2>
+        <p class="desc mx-auto">The dedicated team of urban planners, environmental analysts, and economic strategists behind the NADI Masterplan proposition.</p>
+      </div>
+      <div class="reveal" style="text-align: center;">
+        <img src="Meet the team.png" alt="The NADI Planning Team" class="img-card" style="max-width: 900px; margin: 0 auto; border: 1px solid rgba(255,255,255,0.1);" onerror="this.style.display='none'">
+      </div>
     </div>
   </section>
 </div>
 
-<!-- ─── FOOTER ─── -->
 <footer>
-  <div style="background: var(--nadi-charcoal); padding: 50px 5%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
-    <p style="font-size: 12px; color: rgba(244, 240, 234, 0.4); letter-spacing: 2px; text-transform: uppercase;">&copy; 2026 NADI Jerantut Masterplan. Universiti Islam Antarabangsa Malaysia (IIUM) Urban Planning Department.</p>
+  <div style="background: #111111; padding: 50px 5%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
+    <p style="font-size: 12px; color: rgba(244, 240, 234, 0.4); letter-spacing: 2px; text-transform: uppercase;">© 2026 NADI Jerantut Masterplan. Universiti Islam Antarabangsa Malaysia (IIUM) Urban Planning Department.</p>
   </div>
 </footer>
 
-</div> <!-- End Site Wrapper -->
-
-<!-- ─── SCRIPTS ─── -->
-<script>
+</div> <script>
   // 1. Navbar Glassmorphism Effect
   const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 10) nav.style.boxShadow = '0 15px 40px rgba(0,0,0,0.15)';
-    else nav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.02)';
+    if (window.scrollY > 10) nav.style.boxShadow = '0 15px 40px rgba(0,0,0,0.1)';
+    else nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.05)';
   });
 
   // 2. Global Scroll Reveal Observer with Counter Animation
@@ -679,7 +832,34 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
 
   document.querySelectorAll('.reveal').forEach(el => scrollObserver.observe(el));
 
-  // 3. Tab Switching Logic
+  // 3. Carousel Scroll Logic
+  let scrollInterval;
+  function startCarouselScroll(direction) {
+    const track = document.getElementById('nadiCarousel');
+    if(!track) return;
+    scrollInterval = setInterval(() => {
+      track.scrollLeft += direction * 5;
+    }, 16);
+  }
+  function stopCarouselScroll() {
+    clearInterval(scrollInterval);
+  }
+
+  // 4. Lightbox Modal Logic
+  function openModal(title, imgSrc, desc) {
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalImage').src = imgSrc;
+    document.getElementById('modalDesc').innerText = desc;
+    document.getElementById('galleryModal').classList.add('active');
+  }
+  function closeModal(event) {
+    // Only close if clicking the background overlay, not the content inside
+    if(event.target.id === 'galleryModal') {
+      document.getElementById('galleryModal').classList.remove('active');
+    }
+  }
+
+  // 5. Tab Switching Logic
   let chartsInitialized = false;
 
   function switchTab(tabId, btnElement) {
@@ -703,7 +883,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
     }
   }
 
-  // 4. Chart.js Implementations
+  // 6. Chart.js Implementations
   function initCharts() {
     // Housing Chart (Genesis Tab)
     const ctxHousing = document.getElementById('housingChart');
@@ -724,12 +904,12 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
           responsive: true, maintainAspectRatio: false,
           plugins: { legend: { display: false }, title: { display: true, text: 'Strategic Housing Provision', font: { family: 'Montserrat', size: 14 } } },
           scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } },
-          animation: { duration: 1000, easing: 'easeOutQuart' } /* Speed optimized */
+          animation: { duration: 1000, easing: 'easeOutQuart' }
         }
       });
     }
 
-    // Land Allocation Chart (Dark Mode - Masterplan Tab)
+    // Land Allocation Chart 
     const ctxAlloc = document.getElementById('allocationChart');
     if(ctxAlloc) {
       new Chart(ctxAlloc.getContext('2d'), {
@@ -748,7 +928,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
             legend: { position: 'bottom', labels: { color: '#F5F2EB', font: { family: 'Montserrat' }, padding: 20 } },
             title: { display: false }
           },
-          animation: { duration: 1000, animateScale: true } /* Speed optimized */
+          animation: { duration: 1000, animateScale: true }
         }
       });
     }
@@ -769,7 +949,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
         options: {
           responsive: true, maintainAspectRatio: false,
           plugins: { legend: { position: 'bottom', labels: { font: { family: 'Montserrat' } } } },
-          animation: { duration: 1000, animateScale: true } /* Speed optimized */
+          animation: { duration: 1000, animateScale: true } 
         }
       });
     }
@@ -777,7 +957,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
     chartsInitialized = true;
   }
 
-  // 5. Phasing Interactive Timeline
+  // 7. Phasing Interactive Timeline
   function showPhase(phaseNum) {
     document.querySelectorAll('.phase-panel').forEach(c => c.classList.remove('active'));
     document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('active'));
