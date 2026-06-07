@@ -11,17 +11,18 @@
 <style>
 :root {
   /* Premium Calming Palette */
-  --nadi-red: #8C1D25;       /* Deep Signature Crimson */
-  --nadi-gold: #C6A87C;      /* Champagne Gold */
-  --nadi-forest: #4A7055;    /* Premium Eucalyptus Sage */
+  --nadi-red: #8C1D25;       
+  --nadi-gold: #C6A87C;      
+  --nadi-forest: #4A7055;    
   
   /* Dark Modes */
-  --nadi-charcoal: #1C1A19;  /* Soft Warm Black */
+  --nadi-charcoal: #1C1A19;  
   --nadi-charcoal-light: #2A2A2A;
   
   /* Welcoming Earthy Neutrals */
-  --nadi-cream: #F5F2EB;     /* Cashmere Cream */
-  --nadi-sand: #E6DFD3;      /* Darker Cream */
+  --nadi-cream: #F5F2EB;     
+  --nadi-sand: #E6DFD3;      
+  --nadi-stone: #DCD5C9;
   --nadi-pure: #FFFFFF;
   
   /* Text */
@@ -37,8 +38,7 @@ html, body {
   color: var(--text-dark); -webkit-font-smoothing: antialiased;
 }
 
-/* FIX: Changed overflow: hidden to overflow-x: clip so the sticky nav works perfectly */
-.site-wrapper { width: 100%; overflow-x: clip; position: relative; background: var(--nadi-cream); }
+.site-wrapper { width: 100%; overflow: hidden; position: relative; background: var(--nadi-cream); }
 
 /* ─── SCROLLBAR ─── */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
@@ -55,7 +55,7 @@ html, body {
 
 /* ─── NAVIGATION (ALWAYS VISIBLE STICKY) ─── */
 nav {
-  position: -webkit-sticky; position: sticky; top: -1px; z-index: 9999; display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between;
   padding: 0 5%; height: 90px; background: rgba(245, 242, 235, 0.98); backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(198, 168, 124, 0.3); box-shadow: 0 4px 30px rgba(0,0,0,0.05); transition: all 0.4s ease;
 }
@@ -79,7 +79,7 @@ nav {
 .tab-pane { display: none; opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
 .tab-pane.active { display: block !important; opacity: 1 !important; transform: translateY(0); }
 
-/* ─── TYPOGRAPHY & THEMES (STRICT CONTRAST CONTROL) ─── */
+/* ─── TYPOGRAPHY & THEMES ─── */
 section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; }
 .container { max-width: 1400px; margin: 0 auto; padding: 0 5%; width: 100%; }
 .section-header { margin-bottom: clamp(40px, 8vw, 70px); }
@@ -92,16 +92,15 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
 .title em { font-style: italic; color: var(--nadi-red); font-weight: 400; }
 .desc { font-size: clamp(14px, 2vw, 16px); color: var(--text-muted); line-height: 2.1; max-width: 750px; font-weight: 400; }
 
-/* Dark Theme overrides to ensure white text on black background */
 .theme-dark { background: var(--nadi-charcoal); color: var(--nadi-pure); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
 .theme-dark .title { color: var(--nadi-pure); }
 .theme-dark .desc { color: rgba(255, 255, 255, 0.7); }
-.theme-dark .text-dark { color: var(--nadi-pure) !important; }
 
-/* Sand Theme ensures dark text on cream background */
 .theme-sand { background: var(--nadi-sand); color: var(--text-dark); border-top: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05); }
 .theme-sand .title { color: var(--text-dark); }
 .theme-sand .desc { color: var(--text-muted); }
+
+.theme-stone { background: var(--nadi-stone); color: var(--text-dark); border-top: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05); }
 
 /* ─── HERO CINEMATIC ─── */
 .hero {
@@ -114,9 +113,9 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
 .hero-quote { font-family: 'Montserrat', sans-serif; font-size: clamp(12px, 2vw, 15px); font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--nadi-gold); margin-bottom: 35px; line-height: 1.6; }
 
 /* ─── INTERACTIVE HOVER CAROUSEL (NADI SNAPSHOTS) ─── */
-.snapshots-container { position: relative; width: 100%; max-width: 1400px; margin: 60px auto 0; padding: 0 5%; }
-.carousel-wrapper { position: relative; display: flex; align-items: center; overflow: hidden; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); background: var(--nadi-pure); border: 1px solid var(--nadi-sand); padding: 15px;}
-.theme-dark .carousel-wrapper { background: var(--nadi-charcoal-light); border-color: rgba(255,255,255,0.05); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+.snapshots-container { position: relative; width: 100%; max-width: 1400px; margin: 40px auto 0; padding: 0 5%; z-index: 20; }
+.snapshots-header { position: relative; z-index: 25; text-align: center; margin-bottom: 30px; }
+.carousel-wrapper { position: relative; display: flex; align-items: center; overflow: hidden; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); background: var(--nadi-pure); border: 1px solid var(--nadi-sand); padding: 15px; z-index: 10; }
 .carousel-track { display: flex; gap: 15px; overflow-x: auto; scrollbar-width: none; scroll-behavior: auto; padding: 10px 0; flex-wrap: nowrap; width: 100%; }
 .carousel-track::-webkit-scrollbar { display: none; }
 .carousel-item { flex: 0 0 auto; width: clamp(250px, 30vw, 350px); height: 250px; border-radius: 8px; overflow: hidden; position: relative; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: transform 0.3s ease; cursor: pointer; }
@@ -124,8 +123,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
 .carousel-item img { width: 100%; height: 100%; object-fit: cover; }
 .carousel-label { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 30px 15px 15px; color: white; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
-/* Hover Arrows */
-.arrow-btn { position: absolute; top: 0; bottom: 0; width: 80px; background: rgba(0,0,0,0.5); color: var(--nadi-gold); font-size: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; border: none; backdrop-filter: blur(5px); opacity: 0; transition: opacity 0.3s; }
+.arrow-btn { position: absolute; top: 0; bottom: 0; width: 80px; background: rgba(0,0,0,0.5); color: var(--nadi-gold); font-size: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 30; border: none; backdrop-filter: blur(5px); opacity: 0; transition: opacity 0.3s; }
 .carousel-wrapper:hover .arrow-btn { opacity: 1; }
 .arrow-btn:hover { background: rgba(0,0,0,0.8); color: var(--nadi-pure); }
 .arrow-left { left: 0; border-radius: 12px 0 0 12px; }
@@ -137,24 +135,18 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
 .modal-content { background: var(--nadi-pure); border-radius: 16px; width: 100%; max-width: 1000px; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; transform: translateY(30px); transition: transform 0.4s; box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
 .modal-overlay.active .modal-content { transform: translateY(0); }
 .modal-header { padding: 20px 30px; border-bottom: 1px solid var(--nadi-sand); display: flex; justify-content: space-between; align-items: center; background: var(--nadi-cream); }
-.modal-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--nadi-red); font-weight: 600; margin: 0; }
-.modal-close { background: none; border: none; font-size: 30px; cursor: pointer; color: var(--text-muted); transition: color 0.3s; line-height: 1; }
+.modal-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--nadi-red); font-weight: 600; }
+.modal-close { background: none; border: none; font-size: 30px; cursor: pointer; color: var(--text-muted); transition: color 0.3s; }
 .modal-close:hover { color: var(--nadi-red); }
-.modal-body { padding: 30px; overflow-y: auto; text-align: center; }
-.modal-image { width: 100%; height: auto; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); object-fit: contain; max-height: 60vh; }
-.modal-desc { font-size: 15px; color: var(--text-muted); line-height: 1.8; }
+.modal-body { padding: 30px; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; }
+.modal-image { width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); object-fit: contain; max-height: 60vh; }
+.modal-desc { font-size: 15px; color: var(--text-muted); line-height: 1.8; text-align: center; }
 
 /* ─── GRIDS & CARDS ─── */
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 8vw, 80px); align-items: center; width: 100%; }
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(30px, 5vw, 40px); width: 100%; }
 .img-card { width: 100%; max-width: 100%; border-radius: 12px; box-shadow: 0 25px 60px rgba(0,0,0,0.08); transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); border: 1px solid var(--nadi-sand); cursor: pointer; }
 .theme-dark .img-card { border: 1px solid rgba(255,255,255,0.05); }
 .img-card:hover { transform: scale(1.02); box-shadow: 0 30px 60px rgba(0,0,0,0.15); }
-
-/* Sector Galleries */
-.sector-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 50px; }
-.sector-gallery img { width: 100%; height: 350px; object-fit: cover; border-radius: 12px; border: 1px solid var(--nadi-sand); box-shadow: 0 15px 40px rgba(0,0,0,0.05); transition: transform 0.4s; cursor: pointer; }
-.sector-gallery img:hover { transform: scale(1.03); z-index: 10; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.15); }
 
 /* ─── STATS BAR ─── */
 .stats-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: rgba(198, 168, 124, 0.2); border: 1px solid rgba(198, 168, 124, 0.2); position: relative; z-index: 10; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.05); }
@@ -165,23 +157,34 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
 
 /* ─── HOUSING FEATURES ─── */
 .feature-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 30px; }
-.feature-list li { font-size: 14px; color: var(--text-dark); padding: 15px; background: var(--nadi-cream); border-left: 3px solid var(--nadi-red); border-radius: 0 8px 8px 0; font-weight: 500; transition: transform 0.3s; }
+.feature-list li { font-size: 14px; color: var(--text-dark); padding: 15px; background: var(--nadi-pure); border-left: 3px solid var(--nadi-red); border-radius: 0 8px 8px 0; font-weight: 500; transition: transform 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
 .feature-list li:hover { transform: translateX(10px); background: var(--nadi-sand); }
 
-/* ─── THE THREE PULSES (DARK RESTORED) ─── */
-.pulse-block { margin-bottom: 100px; padding-bottom: 100px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+/* ─── INTERACTIVE VISUAL PORTFOLIO (ARCHITECTURAL SHOWCASE) ─── */
+.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
+.portfolio-item { position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.05); cursor: pointer; border: 1px solid var(--nadi-sand); transition: transform 0.4s ease; background: var(--nadi-pure); }
+.portfolio-item img { width: 100%; height: 280px; object-fit: cover; transition: transform 0.6s ease; }
+.portfolio-item:hover { transform: translateY(-10px); box-shadow: 0 25px 60px rgba(0,0,0,0.15); border-color: var(--nadi-gold); }
+.portfolio-item:hover img { transform: scale(1.05); }
+.portfolio-content { padding: 25px; position: relative; background: var(--nadi-pure); z-index: 2; }
+.portfolio-category { font-size: 10px; font-weight: 700; color: var(--nadi-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+.portfolio-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--nadi-red); font-weight: 600; margin-bottom: 10px; }
+.portfolio-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+/* ─── THE THREE PULSES (LIGHT & WELCOMING THEME RESTORED) ─── */
+.pulse-block { margin-bottom: 100px; padding-bottom: 100px; border-bottom: 1px solid rgba(0,0,0,0.05); }
 .pulse-block:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
 .pulse-header { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 60px; }
 .pulse-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 6vw, 65px); color: var(--nadi-red); line-height: 1; margin-bottom: 15px; }
-.pulse-metrics { display: inline-flex; gap: 20px; background: var(--nadi-charcoal-light); padding: 10px 25px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 20px rgba(0,0,0,0.2); margin-bottom: 20px; }
+.pulse-metrics { display: inline-flex; gap: 20px; background: var(--nadi-pure); padding: 10px 25px; border-radius: 50px; border: 1px solid var(--nadi-sand); box-shadow: 0 10px 20px rgba(0,0,0,0.03); margin-bottom: 20px; }
 .p-metric { font-size: 12px; color: var(--nadi-gold); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
 .pulse-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-.pulse-category { background: var(--nadi-charcoal-light); padding: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 15px 40px rgba(0,0,0,0.3); transition: transform 0.4s; }
-.pulse-category:hover { transform: translateY(-10px); border-color: var(--nadi-gold); }
-.pulse-category h4 { font-size: 14px; font-weight: 700; color: var(--nadi-pure); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.pulse-category { background: var(--nadi-pure); padding: 40px; border-radius: 12px; border: 1px solid var(--nadi-sand); box-shadow: 0 15px 40px rgba(0,0,0,0.03); transition: transform 0.4s; }
+.pulse-category:hover { transform: translateY(-10px); border-color: var(--nadi-gold); box-shadow: 0 25px 50px rgba(198, 168, 124, 0.15); }
+.pulse-category h4 { font-size: 14px; font-weight: 700; color: var(--text-dark); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
 .pulse-category h4::before { content: ''; display: block; width: 12px; height: 12px; background: var(--nadi-gold); border-radius: 50%; }
 .pulse-list { list-style: none; }
-.pulse-list li { font-size: 14px; color: rgba(255,255,255,0.7); padding: 12px 0; border-bottom: 1px dashed rgba(255,255,255,0.1); display: flex; flex-direction: column; gap: 4px; line-height: 1.6; }
+.pulse-list li { font-size: 14px; color: var(--text-muted); padding: 12px 0; border-bottom: 1px dashed var(--nadi-sand); display: flex; flex-direction: column; gap: 4px; line-height: 1.6; }
 .pulse-list li:last-child { border-bottom: none; }
 .pulse-list li strong { color: var(--nadi-red); font-weight: 600; }
 
@@ -191,7 +194,6 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
 .theme-dark .chart-box { background: var(--nadi-charcoal-light); border-color: rgba(255,255,255,0.05); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
 
 .media-wrapper { position: relative; width: 100%; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.1); border: 1px solid var(--nadi-sand); background: var(--nadi-pure); }
-/* Map lazy load fix */
 .map-iframe { width: 100% !important; height: clamp(350px, 50vw, 500px); border: 0; }
 .video-container { position: relative; padding-bottom: 56.25%; height: 0; }
 .video-container iframe { position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; border: 0; }
@@ -225,7 +227,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
 .reveal { opacity: 0; transform: translateY(60px); transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* ─── MOBILE RESPONSIVENESS (PERFECT STICKY TABS) ─── */
+/* ─── MOBILE RESPONSIVENESS ─── */
 @media (max-width: 1024px) {
   nav { flex-direction: column; height: auto; padding: 20px 5%; align-items: center; gap: 15px; }
   .tab-buttons { display: flex; overflow-x: auto; width: 100%; gap: 10px; padding-bottom: 5px; scrollbar-width: none; }
@@ -233,7 +235,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
   .tab-btn { white-space: nowrap; flex: 0 0 auto; }
 
   .grid-2, .phase-panel, .ecosystem-matrix { grid-template-columns: 1fr; width: 100%; }
-  .feature-list { grid-template-columns: 1fr; }
+  
   .stats-bar { grid-template-columns: 1fr 1fr; margin-top: -30px; }
   
   .matrix-core { display: none; }
@@ -451,134 +453,81 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
     </div>
   </section>
 
-  <section style="background: var(--nadi-pure); color: var(--text-dark);">
+  <section class="theme-sand">
     <div class="container">
       <div class="section-header text-center reveal">
-        <div class="eyebrow" style="justify-content: center;">Residential Ecosystem</div>
-        <h2 class="title" style="color: var(--text-dark);">Symbiotic <em>Interflow</em></h2>
-        <p class="desc mx-auto" style="color: var(--text-muted);">The NADI Interflow Framework reimagines housing by weaving youth migration and elderly aging into a unified, symbiotic architectural ecosystem. Spatially, the masterplan integrates accessible ground-level elderly bungalows with flexible upper-level youth studios clustered around shared breezy corridors, communal laundromats, and integrated co-working hubs.</p>
+        <div class="eyebrow" style="justify-content: center;">Interactive Visual Portfolio</div>
+        <h2 class="title">Architectural <em>Showcase</em></h2>
+        <p class="desc mx-auto">Explore the detailed structural innovations spanning across NADI's residential, commercial, and industrial sectors. Click on any rendering to review specific architectural capabilities.</p>
       </div>
 
-      <div class="stats-bar reveal" style="margin: 0 auto 60px; max-width: 900px; box-shadow: none; border-color: var(--nadi-sand); background: var(--nadi-cream);">
-        <div class="stat-item" style="background: transparent;">
-          <div class="stat-num" data-target="2008">0</div>
-          <div class="stat-label">Terrace Units</div>
+      <div class="portfolio-grid reveal">
+        
+        <div class="portfolio-item" onclick="openModal('Residential Interflow', 'Housing.png', 'The NADI Interflow Framework reimagines housing by weaving youth migration and elderly aging into a unified, symbiotic architectural ecosystem.')">
+          <img src="Housing.png" alt="Housing" onerror="this.src='Housing.jpg'">
+          <div class="portfolio-content">
+            <div class="portfolio-category">Residential Hub</div>
+            <h3 class="portfolio-title">Symbiotic Interflow</h3>
+            <p class="portfolio-desc">Ground-level elderly bungalows integrated with flexible upper-level youth studios.</p>
+          </div>
         </div>
-        <div class="stat-item" style="background: transparent;">
-          <div class="stat-num" data-target="254">0</div>
-          <div class="stat-label">Semi-Detached</div>
-        </div>
-        <div class="stat-item" style="background: transparent;">
-          <div class="stat-num" data-target="132">0</div>
-          <div class="stat-label">Luxury Bungalows</div>
-        </div>
-      </div>
 
-      <div class="grid-2" style="align-items: start;">
-        <div class="reveal">
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 32px; color: var(--nadi-red); margin-bottom: 20px;">Housing Differentiation</h3>
-          <p class="desc" style="color: var(--text-muted);">Prioritizing our main catchment by applying universal design elements directly into our housing structures. Every unit is engineered for long-term safety and digital health integration.</p>
-          <ul class="feature-list">
-            <li>Outdoor water filter systems</li>
-            <li>Built-in security grills</li>
-            <li>Assistive safety handrails</li>
-            <li>NADI Smart Sensor Array</li>
-            <li>NADI Caregiver Alert Station</li>
-            <li>Motion Sensing Pathways</li>
-            <li>Remote Health Monitoring Hub</li>
-            <li>Concept Interflow Architecture</li>
-          </ul>
+        <div class="portfolio-item" onclick="openModal('Terrace Architecture', 'Housing 1.png', 'Equipped with NADI Smart Sensor Arrays and Caregiver Alert Stations directly integrated into the unit layouts.')">
+          <img src="Housing 1.png" alt="Housing 1" onerror="this.src='Housing 1.jpg'">
+          <div class="portfolio-content">
+            <div class="portfolio-category">Residential Hub</div>
+            <h3 class="portfolio-title">Terrace Provision</h3>
+            <p class="portfolio-desc">High-efficiency, modern housing designed to neutralize regional deficits.</p>
+          </div>
         </div>
-        <div class="reveal" style="transition-delay: 0.2s;">
-          <img src="Housing.png" alt="NADI Housing Concept" class="img-card" onclick="openModal('Housing Concept', 'Housing.png', 'Integration of biophilic elements within the residential ecosystem, bridging indoor comforts with natural healing environments.')" onerror="this.src='Housing.jpg'">
+
+        <div class="portfolio-item" onclick="openModal('Commercial Promenades', 'Commercial 1.png', 'Walkable, waterfront-facing retail units integrating dining, boutique commerce, and active aging showrooms.')">
+          <img src="Commercial 1.png" alt="Commercial 1" onerror="this.src='Commercial 1.jpg'">
+          <div class="portfolio-content">
+            <div class="portfolio-category">Commercial Center</div>
+            <h3 class="portfolio-title">NADI Promenade</h3>
+            <p class="portfolio-desc">95 Boulevard Shoplots supporting a vibrant, youth-centered lifestyle.</p>
+          </div>
         </div>
-      </div>
 
-      <div class="sector-gallery reveal">
-        <img src="Housing 1.png" alt="Housing Typology 1" onclick="openModal('Terrace Architecture', 'Housing 1.png', 'Modern, high-efficiency terrace units engineered to combat the regional housing deficit while providing affordable entry for youth.')" onerror="this.src='Housing 1.jpg'">
-        <img src="Housing 2.png" alt="Housing Typology 2" onclick="openModal('Bungalow Spaces', 'Housing 2.png', 'Premium Eco-Nadi sanctuaries designed specifically for the discerning retirement and medical tourism market.')" onerror="this.src='Housing 2.jpg'">
-        <img src="Housing 3.png" alt="Housing Typology 3" onclick="openModal('Semi-D Design', 'Housing 3.png', 'Sanubari Serene semi-detached units fostering multi-generational living with spacious, adaptable layouts.')" onerror="this.src='Housing 3.jpg'">
-        <img src="Housing 4.png" alt="Housing Typology 4" onclick="openModal('Cluster Homes', 'Housing 4.png', 'Forestia residential clusters designed to balance community interaction with essential private sanctuary space.')" onerror="this.src='Housing 4.jpg'">
-      </div>
-    </div>
-  </section>
-
-  <section style="background: var(--nadi-cream); color: var(--text-dark);">
-    <div class="container">
-      <div class="section-header text-center reveal">
-        <div class="eyebrow" style="justify-content: center;">Youth-Centered Urban Hub</div>
-        <h2 class="title" style="color: var(--text-dark);">Commercial & <em>Lifestyle</em></h2>
-        <p class="desc mx-auto" style="color: var(--text-muted);">Youth represent the most active and adaptive urban users. Designing for them ensures the development remains dynamic, relevant, and continuously activated. We are creating a vibrant, mixed-use urban hub in Jerantut that integrates culture, creativity, and community.</p>
-      </div>
-
-      <div class="grid-2" style="align-items: start;">
-        <div class="reveal">
-          <img src="Commercial.png" alt="Commercial Concept" class="img-card" onclick="openModal('Commercial Hub', 'Commercial.png', 'The vibrant commercial epicenter designed to activate youth engagement and provide diverse retail opportunities.')" onerror="this.src='Commercial.jpg'">
+        <div class="portfolio-item" onclick="openModal('Corporate Hospitality', 'Commercial 3.png', 'The 1,500-seat Theater of Innovation, establishing the first Grade-A MICE center in a 100km radius.')">
+          <img src="Commercial 3.png" alt="Commercial 3" onerror="this.src='Commercial 3.jpg'">
+          <div class="portfolio-content">
+            <div class="portfolio-category">Commercial Center</div>
+            <h3 class="portfolio-title">MICE Event Spaces</h3>
+            <p class="portfolio-desc">Advanced corporate venues designed to capture global tourism and conventions.</p>
+          </div>
         </div>
-        <div class="reveal" style="transition-delay: 0.2s;">
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 32px; color: var(--nadi-gold); margin-bottom: 20px;">Facilities & Amenities Provision</h3>
-          <p class="desc" style="color: var(--text-muted);">We offer convenient access to amenities and lifestyle facilities within close proximity to campus and workplaces, driving an attractive, sustainable lifestyle.</p>
-          <ul class="feature-list">
-            <li><strong>Sukan Debaran Complex:</strong> Urban Indoor Sports.</li>
-            <li><strong>Kilauan Digital Muzium:</strong> Immersive Digital Experience.</li>
-            <li>8 Youth-Oriented Plazas.</li>
-            <li>E-Sports & Gaming Hub.</li>
-            <li>Recovery Club.</li>
-            <li><strong>492 Units:</strong> Terrace Shop Lots.</li>
-            <li><strong>NADI Promenade:</strong> 95 Boulevard Shoplots.</li>
-          </ul>
+
+        <div class="portfolio-item" onclick="openModal('Manufacturing Precision', 'Industrial 2.png', 'Mid-tier nutraceutical semi-detached factories equipped for advanced R&D and specialized production processes.')">
+          <img src="Industrial 2.png" alt="Industrial 2" onerror="this.src='Industrial 2.jpg'">
+          <div class="portfolio-content">
+            <div class="portfolio-category">Industrial Zone</div>
+            <h3 class="portfolio-title">Bio-Medical Hub</h3>
+            <p class="portfolio-desc">Pioneering facilities targeting the lucrative health and pharmaceutical markets.</p>
+          </div>
         </div>
-      </div>
 
-      <div class="sector-gallery reveal">
-        <img src="Commercial 1.png" alt="Commercial Design 1" onclick="openModal('Retail Promenade', 'Commercial 1.png', 'Walkable, waterfront-facing retail units integrating dining, boutique commerce, and active aging showrooms.')" onerror="this.src='Commercial 1.jpg'">
-        <img src="Commercial 2.png" alt="Commercial Design 2" onclick="openModal('Cultural Anchors', 'Commercial 2.png', 'The monumental Al-Nadi Mosque and the surrounding 7.75 acres of Ceremonial Gardens serving as the civic heart of the estate.')" onerror="this.src='Commercial 2.jpg'">
-        <img src="Commercial 3.png" alt="Commercial Design 3" onclick="openModal('Event Spaces', 'Commercial 3.png', 'The 1,500-seat Theater of Innovation, the first Grade-A MICE center in a 100km radius designed to capture corporate tourism.')" onerror="this.src='Commercial 3.jpg'">
-      </div>
-    </div>
-  </section>
-
-  <section style="background: var(--nadi-pure); color: var(--text-dark);">
-    <div class="container">
-      <div class="section-header text-center reveal">
-        <div class="eyebrow" style="justify-content: center;">Market Opportunity</div>
-        <h2 class="title" style="color: var(--text-dark);">Industrial <em>Innovation</em></h2>
-        <p class="desc mx-auto" style="color: var(--text-muted);">Jerantut records the lowest industrial stock among compared districts, with zero industrial overhang between 2021 and 2025. This reflects a healthy market with strong potential to introduce new high-value industries that diversify the local economy.</p>
-      </div>
-
-      <div class="grid-2" style="align-items: start;">
-        <div class="reveal">
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 32px; color: var(--nadi-forest); margin-bottom: 20px;">Specialized Facilities</h3>
-          <p class="desc" style="color: var(--text-muted);">Current development in Jerantut is heavily concentrated in simple terraced factories. NADI introduces a diversified, highly specialized industrial ecosystem focused on medical and agro-bio innovations.</p>
-          <ul class="feature-list">
-            <li><strong>Terrace Factory:</strong> RM 550,000 - RM 900,000</li>
-            <li><strong>Semi-Detached Factory:</strong> (Nutraceutical) RM 1.0M - RM 2.55M</li>
-            <li><strong>Detached Factory:</strong> (Equipment Industry) RM 3.0M+</li>
-            <li><strong>Free Standing Industrial Buildings</strong></li>
-          </ul>
+        <div class="portfolio-item" onclick="openModal('Enterprise Incubation', 'Industrial 1.png', 'Agile incubation spaces designed for emerging biotech startups and local agricultural processing integrations.')">
+          <img src="Industrial 1.png" alt="Industrial 1" onerror="this.src='Industrial 1.jpg'">
+          <div class="portfolio-content">
+            <div class="portfolio-category">Industrial Zone</div>
+            <h3 class="portfolio-title">Factory Units</h3>
+            <p class="portfolio-desc">Adaptive spaces fostering regional entrepreneurship and technical growth.</p>
+          </div>
         </div>
-        <div class="reveal" style="transition-delay: 0.2s;">
-          <img src="Industrial.png" alt="Industrial Innovation Hub" class="img-card" onclick="openModal('Industrial Park', 'Industrial.png', 'The high-yield manufacturing zone focusing exclusively on bio-medical and pharmaceutical processing to drive Jerantut\'s economy.')" onerror="this.src='Industrial.jpg'">
-        </div>
-      </div>
 
-      <div class="sector-gallery reveal">
-        <img src="Industrial 1.png" alt="Industrial Design 1" onclick="openModal('Factory Units', 'Industrial 1.png', 'Agile incubation spaces designed for emerging biotech startups and local agricultural processing integrations.')" onerror="this.src='Industrial 1.jpg'">
-        <img src="Industrial 2.png" alt="Industrial Design 2" onclick="openModal('Manufacturing', 'Industrial 2.png', 'Mid-tier nutraceutical semi-detached factories equipped for advanced R&D and specialized production.')" onerror="this.src='Industrial 2.jpg'">
-        <img src="Industrial 3.png" alt="Industrial Design 3" onclick="openModal('Logistics Core', 'Industrial 3.png', 'Heavy medical equipment detached factories requiring specialized supply chain logistics and massive footprint availability.')" onerror="this.src='Industrial 3.jpg'">
-        <img src="Industrial 4.png" alt="Industrial Design 4" onclick="openModal('Processing Labs', 'Industrial 4.png', 'Controlled environments engineered specifically to meet international pharmaceutical and bio-tech manufacturing standards.')" onerror="this.src='Industrial 4.jpg'">
-        <img src="Industrial 5.png" alt="Industrial Design 5" onclick="openModal('Bio-Tech Facilities', 'Industrial 5.png', 'Free-standing industrial anchors intended for multi-national medical corporations to establish a regional headquarters in Pahang.')" onerror="this.src='Industrial 5.jpg'">
       </div>
     </div>
   </section>
 
 </div>
 
-<div id="tab-zones" class="tab-pane theme-dark">
+<div id="tab-zones" class="tab-pane theme-sand">
   <section style="padding-top: 100px;">
     <div class="container">
       <div class="section-header text-center reveal">
-        <div class="eyebrow" style="justify-content: center; color: var(--nadi-gold-light);">Macro Zoning Ecosystems</div>
+        <div class="eyebrow" style="justify-content: center;">Macro Zoning Ecosystems</div>
         <h2 class="title">The Three <em>Pulses</em></h2>
         <p class="desc mx-auto">A visionary tripartite division of the 1,110-acre estate. Each zone functions as a highly specialized, self-sustaining urban organ driving the broader economic and social resurgence of Jerantut.</p>
       </div>
@@ -772,8 +721,8 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
     <div class="container">
       <div class="section-header reveal">
         <div class="eyebrow">A Masterful Orchestration of Growth</div>
-        <h2 class="title" style="color: var(--text-dark);">Implementation <em>Strategy</em></h2>
-        <p class="desc" style="color: var(--text-muted);">To strictly mitigate risk and ensure sustainable market absorption, NADI employs a calculated "Transit-First" phasing logic. This triggers immediate economic momentum before expanding into specialized, high-yield healthcare sectors.</p>
+        <h2 class="title">Implementation <em>Strategy</em></h2>
+        <p class="desc">To strictly mitigate risk and ensure sustainable market absorption, NADI employs a calculated "Transit-First" phasing logic. This triggers immediate economic momentum before expanding into specialized, high-yield healthcare sectors.</p>
       </div>
 
       <div class="timeline-btn-group reveal">
@@ -785,7 +734,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
       <div id="phase-1" class="phase-panel active">
         <div class="phase-text">
           <h2 style="font-family: 'Cormorant Garamond'; font-size: 55px; color: var(--nadi-red); margin-bottom: 20px;">Degupan NADI</h2>
-          <p class="desc" style="color: var(--text-muted);"><strong>The Youth & Transit Catalyst.</strong> We commence by activating Transit-Oriented Development (TOD) immediately adjacent to the KTM station. By prioritizing NADI University and agile startup spaces, we construct a foundational workforce pipeline and secure vital regulatory momentum.</p>
+          <p class="desc"><strong>The Youth & Transit Catalyst.</strong> We commence by activating Transit-Oriented Development (TOD) immediately adjacent to the KTM station. By prioritizing NADI University and agile startup spaces, we construct a foundational workforce pipeline and secure vital regulatory momentum.</p>
         </div>
         <img src="Phasing Diagram 1 (1-5 years).png" alt="Phase 1" class="img-card" onerror="this.src='Phasing Diagram 1 (1-5 years)_2.jpg'">
       </div>
@@ -793,7 +742,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
       <div id="phase-2" class="phase-panel">
         <div class="phase-text">
           <h2 style="font-family: 'Cormorant Garamond'; font-size: 55px; color: var(--nadi-gold); margin-bottom: 20px;">Bayu NADI</h2>
-          <p class="desc" style="color: var(--text-muted);"><strong>The Commerce & Tourism Expansion.</strong> With the workforce established, Phase 2 erects the MICE Center, premium hotels, and the heavy bio-medical manufacturing hubs. This aggressively drives regional visitor engagement and foreign direct investment.</p>
+          <p class="desc"><strong>The Commerce & Tourism Expansion.</strong> With the workforce established, Phase 2 erects the MICE Center, premium hotels, and the heavy bio-medical manufacturing hubs. This aggressively drives regional visitor engagement and foreign direct investment.</p>
         </div>
         <img src="Phasing Diagram 2 (6-10 years).png" alt="Phase 2" class="img-card" onerror="this.src='Phasing Diagram 2 (6-10 years)_2.jpg'">
       </div>
@@ -801,7 +750,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
       <div id="phase-3" class="phase-panel">
         <div class="phase-text">
           <h2 style="font-family: 'Cormorant Garamond'; font-size: 55px; color: var(--nadi-forest); margin-bottom: 20px;">Hayat NADI</h2>
-          <p class="desc" style="color: var(--text-muted);"><strong>The Pinnacle of Wellness.</strong> The final maturation of the township. Delivering the specialized Geriatric Hospital and ultra-premium Eco-Nadi sanctuaries. The ecosystem is now fully capable of supporting a globally recognized retirement destination.</p>
+          <p class="desc"><strong>The Pinnacle of Wellness.</strong> The final maturation of the township. Delivering the specialized Geriatric Hospital and ultra-premium Eco-Nadi sanctuaries. The ecosystem is now fully capable of supporting a globally recognized retirement destination.</p>
         </div>
         <img src="Phasing Diagram 3 (11-20 years).png" alt="Phase 3" class="img-card" onerror="this.src='Phasing Diagram 3 (11-20 years)_2.jpg'">
       </div>
@@ -960,7 +909,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
       });
     }
 
-    // Land Allocation Chart (Dark Mode - Masterplan Tab)
+    // Land Allocation Chart 
     const ctxAlloc = document.getElementById('allocationChart');
     if(ctxAlloc) {
       new Chart(ctxAlloc.getContext('2d'), {
