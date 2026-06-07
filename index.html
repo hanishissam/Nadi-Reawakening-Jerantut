@@ -160,18 +160,20 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
 .feature-list li { font-size: 14px; color: var(--text-dark); padding: 15px; background: var(--nadi-pure); border-left: 3px solid var(--nadi-red); border-radius: 0 8px 8px 0; font-weight: 500; transition: transform 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
 .feature-list li:hover { transform: translateX(10px); background: var(--nadi-sand); }
 
-/* ─── INTERACTIVE VISUAL PORTFOLIO (ARCHITECTURAL SHOWCASE) ─── */
-.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
-.portfolio-item { position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.05); cursor: pointer; border: 1px solid var(--nadi-sand); transition: transform 0.4s ease; background: var(--nadi-pure); }
-.portfolio-item img { width: 100%; height: 280px; object-fit: cover; transition: transform 0.6s ease; }
-.portfolio-item:hover { transform: translateY(-10px); box-shadow: 0 25px 60px rgba(0,0,0,0.15); border-color: var(--nadi-gold); }
-.portfolio-item:hover img { transform: scale(1.05); }
-.portfolio-content { padding: 25px; position: relative; background: var(--nadi-pure); z-index: 2; }
-.portfolio-category { font-size: 10px; font-weight: 700; color: var(--nadi-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
-.portfolio-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--nadi-red); font-weight: 600; margin-bottom: 10px; }
-.portfolio-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+/* ─── ARCHITECTURAL SHOWCASE CAROUSEL (TAB 2) ─── */
+.showcase-carousel { width: 100%; overflow: hidden; padding: 20px 0; margin-top: 40px; }
+.showcase-track { display: flex; gap: 30px; overflow-x: auto; padding: 10px 5%; margin: 0 -5%; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.showcase-track::-webkit-scrollbar { display: none; }
+.showcase-item { flex: 0 0 clamp(280px, 40vw, 400px); height: clamp(350px, 50vw, 500px); position: relative; border-radius: 16px; overflow: hidden; cursor: pointer; scroll-snap-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.1); transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); border: 1px solid var(--nadi-sand); background: var(--nadi-pure); }
+.showcase-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s; }
+.showcase-item:hover { transform: translateY(-15px); border-color: var(--nadi-gold); box-shadow: 0 30px 60px rgba(0,0,0,0.15); }
+.showcase-item:hover img { transform: scale(1.05); }
+.showcase-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(28,26,25,0.9) 0%, transparent 60%); display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; opacity: 0.9; transition: opacity 0.4s; }
+.showcase-item:hover .showcase-overlay { opacity: 1; }
+.showcase-overlay h4 { color: var(--nadi-gold); font-family: 'Cormorant Garamond', serif; font-size: 26px; margin-bottom: 5px; }
+.showcase-overlay p { color: var(--nadi-pure); font-size: 11px; text-transform: uppercase; letter-spacing: 2px; }
 
-/* ─── THE THREE PULSES (LIGHT & WELCOMING THEME RESTORED) ─── */
+/* ─── THE THREE PULSES ─── */
 .pulse-block { margin-bottom: 100px; padding-bottom: 100px; border-bottom: 1px solid rgba(0,0,0,0.05); }
 .pulse-block:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
 .pulse-header { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 60px; }
@@ -206,7 +208,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
 .phase-panel { display: none; grid-template-columns: 1fr 1.2fr; gap: clamp(40px, 8vw, 80px); align-items: center; width: 100%; }
 .phase-panel.active { display: grid; animation: fadeUp 0.8s ease forwards; }
 
-/* ─── INTERACTIVE CLOSED LOOP CSS ENGINE (DARK THEME FIXED) ─── */
+/* ─── INTERACTIVE CLOSED LOOP CSS ENGINE ─── */
 .ecosystem-matrix { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 1000px; margin: 0 auto; position: relative; padding: 60px 0; }
 .eco-node { background: var(--nadi-charcoal-light); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: clamp(25px, 5vw, 40px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); transition: all 0.5s ease; position: relative; z-index: 2; overflow: hidden; color: var(--nadi-pure); }
 .eco-node::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, transparent, rgba(198, 168, 124, 0.05)); opacity: 0; transition: opacity 0.5s; }
@@ -417,7 +419,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
   </section>
 </div>
 
-<div id="tab-masterplan" class="tab-pane theme-dark">
+<div id="tab-masterplan" class="tab-pane">
   
   <section style="padding-top: 100px;">
     <div class="container text-center">
@@ -433,88 +435,184 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
 
       <div class="grid-2 text-left mt-5" style="margin-top: 100px;">
         <div class="reveal">
-          <div class="chart-box" style="background: var(--nadi-charcoal); border: 1px solid rgba(255,255,255,0.05);">
-            <h3 style="text-align: center; color: var(--nadi-gold); font-family: 'Cormorant Garamond', serif; font-size: 24px; margin-bottom: 20px;">The 51/49 Equilibrium</h3>
+          <div class="chart-box dark-panel" style="background: var(--nadi-pure); border: 1px solid var(--nadi-sand);">
+            <h3 style="text-align: center; color: var(--nadi-red); font-family: 'Cormorant Garamond', serif; font-size: 24px; margin-bottom: 20px;">The 51/49 Equilibrium</h3>
             <div class="chart-container" style="height: 350px;">
               <canvas id="allocationChart"></canvas>
             </div>
           </div>
         </div>
         <div class="reveal" style="transition-delay: 0.2s;">
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 38px; color: var(--nadi-gold); margin-bottom: 20px;">Circulation & Mobility</h3>
+          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 38px; color: var(--nadi-red); margin-bottom: 20px;">Circulation & Mobility</h3>
           <p class="desc" style="margin-bottom: 20px;">Abandoning the rigid, monotonous grids typical of conventional estates, our organic layout mimics natural river swales. Curvilinear secondary roads naturally slow vehicular traffic to below 30km/h, prioritizing pedestrian safety and paving the way for our magnificent 1.5km green Atrium Walk spine.</p>
-          <ul style="list-style: none; margin-top: 30px; color: rgba(255, 255, 255, 0.8); line-height: 2.2; font-size: 15px;">
-            <li><strong style="color:var(--nadi-red);">■</strong> <strong>Main Arteries:</strong> 100' high-efficiency traffic corridors.</li>
-            <li><strong style="color:var(--nadi-gold);">■</strong> <strong>Secondary Networks:</strong> 60' avenues integrated with traffic calming elements.</li>
-            <li><strong style="color:var(--nadi-forest);">■</strong> <strong>Pedestrian First:</strong> Safe, walkable biophilic neighborhoods promoting active aging.</li>
+          <ul style="list-style: none; margin-top: 30px; color: var(--text-muted); line-height: 2.2; font-size: 15px;">
+            <li><strong style="color:var(--nadi-red);">■</strong> <strong style="color:var(--text-dark);">Main Arteries:</strong> 100' high-efficiency traffic corridors.</li>
+            <li><strong style="color:var(--nadi-gold);">■</strong> <strong style="color:var(--text-dark);">Secondary Networks:</strong> 60' avenues integrated with traffic calming elements.</li>
+            <li><strong style="color:var(--nadi-forest);">■</strong> <strong style="color:var(--text-dark);">Pedestrian First:</strong> Safe, walkable biophilic neighborhoods promoting active aging.</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="theme-sand">
+  <section style="background: var(--nadi-cream); color: var(--text-dark);">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <div class="eyebrow" style="justify-content: center; color: var(--nadi-red);">Residential Ecosystem</div>
+        <h2 class="title">Symbiotic <em>Interflow</em></h2>
+        <p class="desc mx-auto">The NADI Interflow Framework reimagines housing by weaving youth migration and elderly aging into a unified, symbiotic architectural ecosystem. Spatially, the masterplan integrates accessible ground-level elderly bungalows with flexible upper-level youth studios clustered around shared breezy corridors, communal laundromats, and integrated co-working hubs.</p>
+      </div>
+
+      <div class="stats-bar reveal" style="margin: 0 auto 60px; max-width: 900px; box-shadow: none; border-color: rgba(0,0,0,0.05); background: var(--nadi-pure);">
+        <div class="stat-item" style="background: transparent;">
+          <div class="stat-num" data-target="2008">0</div>
+          <div class="stat-label">Terrace Units</div>
+        </div>
+        <div class="stat-item" style="background: transparent;">
+          <div class="stat-num" data-target="254">0</div>
+          <div class="stat-label">Semi-Detached</div>
+        </div>
+        <div class="stat-item" style="background: transparent;">
+          <div class="stat-num" data-target="132">0</div>
+          <div class="stat-label">Luxury Bungalows</div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="align-items: start;">
+        <div class="reveal">
+          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 32px; color: var(--nadi-red); margin-bottom: 20px;">Housing Differentiation</h3>
+          <p class="desc">Prioritizing our main catchment by applying universal design elements directly into our housing structures. Every unit is engineered for long-term safety and digital health integration.</p>
+          <ul class="feature-list">
+            <li>Outdoor water filter systems</li>
+            <li>Built-in security grills</li>
+            <li>Assistive safety handrails</li>
+            <li>NADI Smart Sensor Array</li>
+            <li>NADI Caregiver Alert Station</li>
+            <li>Motion Sensing Pathways</li>
+            <li>Remote Health Monitoring Hub</li>
+            <li>Concept Interflow Architecture</li>
+          </ul>
+        </div>
+        <div class="reveal" style="transition-delay: 0.2s;">
+          <img src="Housing.png" alt="NADI Housing Concept" class="img-card" onerror="this.src='Housing.jpg'">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: var(--nadi-pure); color: var(--text-dark);">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <div class="eyebrow" style="justify-content: center;">Youth-Centered Urban Hub</div>
+        <h2 class="title">Commercial & <em>Lifestyle</em></h2>
+        <p class="desc mx-auto">Youth represent the most active and adaptive urban users. Designing for them ensures the development remains dynamic, relevant, and continuously activated. We are creating a vibrant, mixed-use urban hub in Jerantut that integrates culture, creativity, and community.</p>
+      </div>
+
+      <div class="grid-2" style="align-items: start;">
+        <div class="reveal">
+          <img src="Commercial.png" alt="Commercial Concept" class="img-card" onerror="this.src='Commercial.jpg'">
+        </div>
+        <div class="reveal" style="transition-delay: 0.2s;">
+          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 32px; color: var(--nadi-gold); margin-bottom: 20px;">Facilities & Amenities Provision</h3>
+          <p class="desc">We offer convenient access to amenities and lifestyle facilities within close proximity to campus and workplaces, driving an attractive, sustainable lifestyle.</p>
+          <ul class="feature-list" style="grid-template-columns: 1fr;">
+            <li style="border-left-color: var(--nadi-gold);"><strong>Sukan Debaran Complex:</strong> Urban Indoor Sports.</li>
+            <li style="border-left-color: var(--nadi-gold);"><strong>Kilauan Digital Muzium:</strong> Immersive Digital Experience.</li>
+            <li style="border-left-color: var(--nadi-gold);"><strong>Recovery Club & E-Sports Hub:</strong> Modern leisure points.</li>
+            <li style="border-left-color: var(--nadi-gold);"><strong>NADI Promenade:</strong> 95 Boulevard Shoplots & 492 Terrace Shoplots.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: var(--nadi-cream); color: var(--text-dark);">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <div class="eyebrow" style="justify-content: center; color: var(--nadi-forest);">Market Opportunity</div>
+        <h2 class="title">Industrial <em>Innovation</em></h2>
+        <p class="desc mx-auto">Jerantut records the lowest industrial stock among compared districts, with zero industrial overhang between 2021 and 2025. This reflects a healthy market with strong potential to introduce new high-value industries that diversify the local economy.</p>
+      </div>
+
+      <div class="grid-2" style="align-items: start;">
+        <div class="reveal">
+          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 32px; color: var(--nadi-forest); margin-bottom: 20px;">Specialized Facilities</h3>
+          <p class="desc">Current development in Jerantut is heavily concentrated in simple terraced factories. NADI introduces a diversified, highly specialized industrial ecosystem focused on medical and agro-bio innovations.</p>
+          <ul class="feature-list" style="grid-template-columns: 1fr;">
+            <li style="border-left-color: var(--nadi-forest);"><strong>Terrace Factory:</strong> RM 550,000 - RM 900,000</li>
+            <li style="border-left-color: var(--nadi-forest);"><strong>Semi-Detached Factory:</strong> (Nutraceutical) RM 1.0M - RM 2.55M</li>
+            <li style="border-left-color: var(--nadi-forest);"><strong>Detached Factory:</strong> (Equipment Industry) RM 3.0M+</li>
+            <li style="border-left-color: var(--nadi-forest);"><strong>Free Standing Industrial Buildings</strong></li>
+          </ul>
+        </div>
+        <div class="reveal" style="transition-delay: 0.2s;">
+          <img src="Industrial.png" alt="Industrial Innovation Hub" class="img-card" onerror="this.src='Industrial.jpg'">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-bottom: 140px; border-top: 1px solid var(--nadi-sand);">
     <div class="container">
       <div class="section-header text-center reveal">
         <div class="eyebrow" style="justify-content: center;">Interactive Visual Portfolio</div>
         <h2 class="title">Architectural <em>Showcase</em></h2>
-        <p class="desc mx-auto">Explore the detailed structural innovations spanning across NADI's residential, commercial, and industrial sectors. Click on any rendering to review specific architectural capabilities.</p>
+        <p class="desc mx-auto">Explore the diverse, meticulously crafted architectural typologies across the NADI Masterplan. Click any module to uncover the underlying design philosophy.</p>
       </div>
-
-      <div class="portfolio-grid reveal">
+    </div>
+    
+    <div class="showcase-carousel reveal">
+      <div class="showcase-track">
         
-        <div class="portfolio-item" onclick="openModal('Residential Interflow', 'Housing.png', 'The NADI Interflow Framework reimagines housing by weaving youth migration and elderly aging into a unified, symbiotic architectural ecosystem.')">
-          <img src="Housing.png" alt="Housing" onerror="this.src='Housing.jpg'">
-          <div class="portfolio-content">
-            <div class="portfolio-category">Residential Hub</div>
-            <h3 class="portfolio-title">Symbiotic Interflow</h3>
-            <p class="portfolio-desc">Ground-level elderly bungalows integrated with flexible upper-level youth studios.</p>
-          </div>
-        </div>
-
-        <div class="portfolio-item" onclick="openModal('Terrace Architecture', 'Housing 1.png', 'Equipped with NADI Smart Sensor Arrays and Caregiver Alert Stations directly integrated into the unit layouts.')">
+        <div class="showcase-item" onclick="openModal('Superlink Terraces', 'Housing 1.png', 'High-volume accessibility engineered to neutralize the local housing deficit while providing premium aesthetic value.')">
           <img src="Housing 1.png" alt="Housing 1" onerror="this.src='Housing 1.jpg'">
-          <div class="portfolio-content">
-            <div class="portfolio-category">Residential Hub</div>
-            <h3 class="portfolio-title">Terrace Provision</h3>
-            <p class="portfolio-desc">High-efficiency, modern housing designed to neutralize regional deficits.</p>
-          </div>
+          <div class="showcase-overlay"><h4>Superlink Terraces</h4><p>Click to explore</p></div>
+        </div>
+        <div class="showcase-item" onclick="openModal('Semi-Detached Homes', 'Housing 2.png', 'Spacious, multi-generational layouts fostering tight-knit familial bonds without sacrificing privacy.')">
+          <img src="Housing 2.png" alt="Housing 2" onerror="this.src='Housing 2.jpg'">
+          <div class="showcase-overlay"><h4>Semi-Detached Homes</h4><p>Click to explore</p></div>
+        </div>
+        <div class="showcase-item" onclick="openModal('Luxury Bungalows', 'Housing 3.png', 'The pinnacle of the Eco-Nadi Sanctuary. Gated, guarded, and integrated with the surrounding biophilic landscape.')">
+          <img src="Housing 3.png" alt="Housing 3" onerror="this.src='Housing 3.jpg'">
+          <div class="showcase-overlay"><h4>Luxury Bungalows</h4><p>Click to explore</p></div>
+        </div>
+        <div class="showcase-item" onclick="openModal('Cluster Housing', 'Housing 4.png', 'Innovative medium-density living that maximizes communal green space and social interaction.')">
+          <img src="Housing 4.png" alt="Housing 4" onerror="this.src='Housing 4.jpg'">
+          <div class="showcase-overlay"><h4>Cluster Housing</h4><p>Click to explore</p></div>
         </div>
 
-        <div class="portfolio-item" onclick="openModal('Commercial Promenades', 'Commercial 1.png', 'Walkable, waterfront-facing retail units integrating dining, boutique commerce, and active aging showrooms.')">
+        <div class="showcase-item" onclick="openModal('NADI Promenade', 'Commercial 1.png', 'A walkable commercial boulevard integrating daily retail, F&B, and local enterprises.')">
           <img src="Commercial 1.png" alt="Commercial 1" onerror="this.src='Commercial 1.jpg'">
-          <div class="portfolio-content">
-            <div class="portfolio-category">Commercial Center</div>
-            <h3 class="portfolio-title">NADI Promenade</h3>
-            <p class="portfolio-desc">95 Boulevard Shoplots supporting a vibrant, youth-centered lifestyle.</p>
-          </div>
+          <div class="showcase-overlay"><h4 style="color:var(--nadi-gold);">NADI Promenade</h4><p>Click to explore</p></div>
         </div>
-
-        <div class="portfolio-item" onclick="openModal('Corporate Hospitality', 'Commercial 3.png', 'The 1,500-seat Theater of Innovation, establishing the first Grade-A MICE center in a 100km radius.')">
+        <div class="showcase-item" onclick="openModal('Digital Museum', 'Commercial 2.png', 'An immersive, youth-oriented street culture plaza designed to activate the district continuously.')">
+          <img src="Commercial 2.png" alt="Commercial 2" onerror="this.src='Commercial 2.jpg'">
+          <div class="showcase-overlay"><h4 style="color:var(--nadi-gold);">Digital Museum</h4><p>Click to explore</p></div>
+        </div>
+        <div class="showcase-item" onclick="openModal('Debaran Complex', 'Commercial 3.png', 'Urban indoor sports and recovery clubs to foster active, healthy lifestyles among the youth workforce.')">
           <img src="Commercial 3.png" alt="Commercial 3" onerror="this.src='Commercial 3.jpg'">
-          <div class="portfolio-content">
-            <div class="portfolio-category">Commercial Center</div>
-            <h3 class="portfolio-title">MICE Event Spaces</h3>
-            <p class="portfolio-desc">Advanced corporate venues designed to capture global tourism and conventions.</p>
-          </div>
+          <div class="showcase-overlay"><h4 style="color:var(--nadi-gold);">Debaran Complex</h4><p>Click to explore</p></div>
         </div>
 
-        <div class="portfolio-item" onclick="openModal('Manufacturing Precision', 'Industrial 2.png', 'Mid-tier nutraceutical semi-detached factories equipped for advanced R&D and specialized production processes.')">
-          <img src="Industrial 2.png" alt="Industrial 2" onerror="this.src='Industrial 2.jpg'">
-          <div class="portfolio-content">
-            <div class="portfolio-category">Industrial Zone</div>
-            <h3 class="portfolio-title">Bio-Medical Hub</h3>
-            <p class="portfolio-desc">Pioneering facilities targeting the lucrative health and pharmaceutical markets.</p>
-          </div>
-        </div>
-
-        <div class="portfolio-item" onclick="openModal('Enterprise Incubation', 'Industrial 1.png', 'Agile incubation spaces designed for emerging biotech startups and local agricultural processing integrations.')">
+        <div class="showcase-item" onclick="openModal('Terrace Factories', 'Industrial 1.png', 'Flexible, agile incubators designed specifically for agro-bio startups and localized SME growth.')">
           <img src="Industrial 1.png" alt="Industrial 1" onerror="this.src='Industrial 1.jpg'">
-          <div class="portfolio-content">
-            <div class="portfolio-category">Industrial Zone</div>
-            <h3 class="portfolio-title">Factory Units</h3>
-            <p class="portfolio-desc">Adaptive spaces fostering regional entrepreneurship and technical growth.</p>
-          </div>
+          <div class="showcase-overlay"><h4 style="color:var(--nadi-forest);">Terrace Factories</h4><p>Click to explore</p></div>
+        </div>
+        <div class="showcase-item" onclick="openModal('Nutraceutical Semi-D', 'Industrial 2.png', 'Mid-tier processing and R&D facilities bridging the gap between agriculture and medical science.')">
+          <img src="Industrial 2.png" alt="Industrial 2" onerror="this.src='Industrial 2.jpg'">
+          <div class="showcase-overlay"><h4 style="color:var(--nadi-forest);">Nutraceutical Semi-D</h4><p>Click to explore</p></div>
+        </div>
+        <div class="showcase-item" onclick="openModal('Medical Detached', 'Industrial 3.png', 'Heavy equipment manufacturing zones equipped with sophisticated logistical infrastructure.')">
+          <img src="Industrial 3.png" alt="Industrial 3" onerror="this.src='Industrial 3.jpg'">
+          <div class="showcase-overlay"><h4 style="color:var(--nadi-forest);">Medical Detached</h4><p>Click to explore</p></div>
+        </div>
+        <div class="showcase-item" onclick="openModal('Free Standing Pharma', 'Industrial 4.png', 'Massive, multi-national pharmaceutical anchors capable of driving global medical tourism exports.')">
+          <img src="Industrial 4.png" alt="Industrial 4" onerror="this.src='Industrial 4.jpg'">
+          <div class="showcase-overlay"><h4 style="color:var(--nadi-forest);">Free Standing Pharma</h4><p>Click to explore</p></div>
+        </div>
+        <div class="showcase-item" onclick="openModal('Bio-Medical Hub', 'Industrial 5.png', 'The aesthetic fusion of high-tech processing plants within a lush, ecologically sensitive masterplan.')">
+          <img src="Industrial 5.png" alt="Industrial 5" onerror="this.src='Industrial 5.jpg'">
+          <div class="showcase-overlay"><h4 style="color:var(--nadi-forest);">Bio-Medical Hub</h4><p>Click to explore</p></div>
         </div>
 
       </div>
@@ -832,7 +930,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
 
   document.querySelectorAll('.reveal').forEach(el => scrollObserver.observe(el));
 
-  // 3. Carousel Scroll Logic
+  // 3. Carousel Scroll Logic (Tab 1)
   let scrollInterval;
   function startCarouselScroll(direction) {
     const track = document.getElementById('nadiCarousel');
@@ -845,7 +943,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
     clearInterval(scrollInterval);
   }
 
-  // 4. Lightbox Modal Logic
+  // 4. Lightbox Modal Logic (Used by both carousels)
   function openModal(title, imgSrc, desc) {
     document.getElementById('modalTitle').innerText = title;
     document.getElementById('modalImage').src = imgSrc;
@@ -909,7 +1007,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
       });
     }
 
-    // Land Allocation Chart 
+    // Land Allocation Chart (Updated for Light Theme in Masterplan Tab)
     const ctxAlloc = document.getElementById('allocationChart');
     if(ctxAlloc) {
       new Chart(ctxAlloc.getContext('2d'), {
@@ -925,7 +1023,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; position: relative; width: 100%; 
         options: {
           responsive: true, maintainAspectRatio: false, cutout: '55%',
           plugins: { 
-            legend: { position: 'bottom', labels: { color: '#F5F2EB', font: { family: 'Montserrat' }, padding: 20 } },
+            legend: { position: 'bottom', labels: { color: '#2C2723', font: { family: 'Montserrat' }, padding: 20 } },
             title: { display: false }
           },
           animation: { duration: 1000, animateScale: true }
